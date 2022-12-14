@@ -17,3 +17,6 @@ def login_Doctor(requst):
 
 def signup_Doctor(requst):
     return render(requst,'signup_Doctor.html')
+
+def login_patient(requst):
+    return render(requst,'login_patient.html')

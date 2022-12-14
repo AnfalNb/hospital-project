@@ -6,5 +6,7 @@ urlpatterns=[
     path('patient_signup/',patient_signup),
     path('login_Doctor/',login_Doctor),
     path('signup_Doctor/',signup_Doctor),
+    path('login_patient/',login_patient),
+
 
     ]
