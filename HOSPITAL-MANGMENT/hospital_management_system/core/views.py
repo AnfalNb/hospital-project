@@ -20,3 +20,12 @@ def signup_Doctor(requst):
 
 def login_patient(requst):
     return render(requst,'login_patient.html')
+
+def AdminLogin (requst):
+    return render(requst,'AdminLogin.html')
+
+def AskDoctor (requst):
+    return render(requst,'AskDoctor.html')    
+
+
+     
