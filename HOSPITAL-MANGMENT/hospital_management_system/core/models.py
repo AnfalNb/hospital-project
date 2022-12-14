@@ -6,14 +6,14 @@ from django.db import models
 class doctor(models.Model):
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
-    third_name=models.CharField(max_length=20, null=True)
+    Phone_Number1=models.CharField(max_length=20, null=True)
     Address=models.CharField(max_length=50,null=True)
     Email_Address=models.CharField(max_length=30,null=True)
     Birth_Date=models.DateField(null=True)
     Medical_Field=models.CharField(max_length=20,null=True)
     File_Diploma=models.FileField(null=True)
     class Meta:
-        db_table = 'Doctor'
+        db_table = 'doctor'
 
     
     
@@ -27,10 +27,8 @@ class patient(models.Model):
     class Meta:
         db_table = 'patient'
 
-#     #password
-#     def __str__(self):
-#         return self.first_name
-    
-# class Admin(models.Model):
-#     username="admin"
-#     Password="adminadmin"
+class hospital_admin(models.Model):
+    username=models.CharField(max_length=30,null = True)
+    password=models.CharField(max_length=30,null=True)
+    class Meta:
+        db_table = 'hospital_admin'
