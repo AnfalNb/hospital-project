@@ -10,3 +10,10 @@ def index(requst):
 
 def patient_signup(requst):
     return render(requst,'patient_signup.html')
+
+
+def login_Doctor(requst):
+    return render(requst,'login_Doctor.html')
+
+def signup_Doctor(requst):
+    return render(requst,'signup_Doctor.html')
