@@ -3,7 +3,8 @@ from django.db import models
 # Create your models here.
 
 # python classes for database
-class doctor(models.Model):
+class doctor_a(models.Model):
+    DoctorID=models.CharField(max_length=20,null = True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number1=models.CharField(max_length=20, null=True)
@@ -12,8 +13,11 @@ class doctor(models.Model):
     Birth_Date=models.DateField(null=True)
     Medical_Field=models.CharField(max_length=20,null=True)
     File_Diploma=models.FileField(null=True)
+    password_Doctor=models.CharField(max_length=20,null = True)
+
+
     class Meta:
-        db_table = 'doctor'
+        db_table = 'doctor_a'
 
     
     

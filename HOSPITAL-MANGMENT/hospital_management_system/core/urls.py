@@ -9,3 +9,4 @@ urlpatterns=[
     path('AdminLogin/',AdminLogin,name="AdminLogin"),
     path('AskDoctor/',AskDoctor,name="AskDoctor"),
 ]
+

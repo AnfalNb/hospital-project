@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .models import patient_a
+from .models import patient_a,doctor_a
 
 # Create your views here.
 
@@ -30,7 +30,20 @@ def login_Doctor(requst):
     return render(requst,'login_Doctor.html')
 
 def signup_Doctor(requst):
+    First_name=requst.POST.get('firstname')
+    print(First_name)
+    Last_name=requst.POST.get('lastname')
+    Phone_Number1=requst.POST.get('phone')
+    Address=requst.POST.get('Address')
+    Email_Address=requst.POST.get('email')
+    Birth_Date=requst.POST.get('birthday')
+    doctorID= requst.POST.get('DoctorId')
+    password_Doctor= requst.POST.get('psw')
+   
+    mydoctordata=doctor_a(DoctorID= doctorID ,First_name=First_name,Last_name=Last_name,Phone_Number1=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_Doctor=password_Doctor)
+    mydoctordata.save()
     return render(requst,'signup_Doctor.html')
+
 
 def login_patient(requst):
     return render(requst,'login_patient.html')
