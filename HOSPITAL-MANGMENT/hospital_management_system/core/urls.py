@@ -10,6 +10,7 @@ urlpatterns=[
     # path('AskDoctor/',AskDoctor,name="AskDoctor"),
 
     path('signup_patient/',signup_patient,name="signup_patient"),
+    path('Doctor_signup/',Doctor_signup,name="Doctor_signup"),
 
 
 

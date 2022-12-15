@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import login as LL
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform
+from .forms import patientform,doctorform
 
 # Create your views here.
 
@@ -21,6 +21,14 @@ def signup_patient(request):
             form.save()
     context={'form':form}
     return render(request, 'signup_patient.html',context)
+
+
+def Doctor_signup(request):
+    form=doctorform(request.POST or None)
+    if form.is_valid():
+            form.save()
+    context={'form':form}
+    return render(request, 'Doctor_signup.html',context)
 
 
 

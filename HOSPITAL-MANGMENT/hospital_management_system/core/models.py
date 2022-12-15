@@ -12,7 +12,7 @@ class doctor_a(models.Model):
     Email_Address=models.CharField(max_length=30,null=True)
     Birth_Date=models.DateField(null=True)
     Medical_Field=models.CharField(max_length=20,null=True)
-    File_Diploma=models.FileField(null=True)
+    File_Diploma=models.FileField(blank=True,null=True)
     password_Doctor=models.CharField(max_length=20,null = True)
 
 
