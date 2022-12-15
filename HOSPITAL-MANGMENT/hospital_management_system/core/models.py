@@ -17,15 +17,18 @@ class doctor(models.Model):
 
     
     
-class patient(models.Model):
+class patient_a(models.Model):
+    patientֹID=models.CharField(max_length=20,null = True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number=models.CharField(max_length=10,null=True)
     Address=models.TextField(max_length=50,null=True)
     Email_Address=models.CharField(max_length=30,null=True)
     Birth_Date=models.DateField(null=True)
+    password_patientֹ=models.CharField(max_length=20,null = True)
+
     class Meta:
-        db_table = 'patient'
+        db_table = 'patient_a'
 
 class hospital_admin(models.Model):
     username=models.CharField(max_length=30,null = True)
