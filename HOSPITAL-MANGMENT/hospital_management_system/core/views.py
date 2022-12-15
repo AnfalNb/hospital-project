@@ -2,14 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import patient_a,doctor_a
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate 
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import login as LL
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import patientform,doctorform
-
+from django.contrib.auth import authenticate, login
+# import django.contrib.auth as auth
 # Create your views here.
 
 def index(requst):
@@ -30,6 +29,29 @@ def Doctor_signup(request):
     context={'form':form}
     return render(request, 'Doctor_signup.html',context)
 
+def login_patient(request):
+    # if request.method== 'GET':
+        
+
+    if request.method == 'POST':
+        p_id=request.POST['p_id']
+        p_password=request.POST['p_password']
+        print(p_id,p_password)
+        p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
+        if p_user is not None:
+           login(request, p_user)
+           return redirect('patient_homepage')
+            
+        else: 
+            return redirect('login_patient')
+    else:
+        return render(request, 'login_patient.html',{})
+            # context={"error": "Invalid id patient"}
+            # return HttpResponse("<h1>//////////// hospital mangment system website")
+            # render(request, 'login_patient.html',context)
+        
+        # return redirect('patient_homepage.html')
+#    return render(request, 'login_patient.html',{})
 
 
 
@@ -38,8 +60,8 @@ def Doctor_signup(request):
 
 
 
-
-
+def patient_homepage(request):
+     return HttpResponse("<h1> hospital mangment system website")
 
 # def patient_signup(requst):
 #     First_name=requst.POST.get('firstname')

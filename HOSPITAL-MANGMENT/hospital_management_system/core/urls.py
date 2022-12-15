@@ -11,6 +11,8 @@ urlpatterns=[
 
     path('signup_patient/',signup_patient,name="signup_patient"),
     path('Doctor_signup/',Doctor_signup,name="Doctor_signup"),
+    path('login_patient/',login_patient,name="login_patient"),
+    path('patient_homepag/',patient_homepage,name="patient_homepage")
 
 
 
