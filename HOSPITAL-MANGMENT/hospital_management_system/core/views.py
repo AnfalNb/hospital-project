@@ -8,16 +8,22 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import patientform,doctorform
 from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+
 # import django.contrib.auth as auth
 # Create your views here.
 
 def index(requst):
-    return HttpResponse("<h1> hospital mangment system website")
+    return render(requst, 'index.html')
+
+    #HttpResponse("<h1> hospital mangment system website")
 
 def signup_patient(request):
     form=patientform(request.POST or None)
     if form.is_valid():
             form.save()
+            return render(request, 'patient_homepage.html')
+
     context={'form':form}
     return render(request, 'signup_patient.html',context)
 
@@ -26,6 +32,8 @@ def Doctor_signup(request):
     form=doctorform(request.POST or None)
     if form.is_valid():
             form.save()
+            return render(request, 'doctor_profile.html')
+
     context={'form':form}
     return render(request, 'Doctor_signup.html',context)
 
@@ -61,7 +69,7 @@ def login_patient(request):
 
 
 def patient_homepage(request):
-     return HttpResponse("<h1> hospital mangment system website")
+     return render(request,patient_homepage.html)
 
 # def patient_signup(requst):
 #     First_name=requst.POST.get('firstname')
@@ -108,4 +116,7 @@ def patient_homepage(request):
 #     return render(requst,'AskDoctor.html')    
 
 
-     
+
+def logout_view(request):
+    logout(request)
+    return redirect(request,index)
