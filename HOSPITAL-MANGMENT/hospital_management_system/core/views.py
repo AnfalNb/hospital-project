@@ -45,9 +45,11 @@ def login_patient(request):
         p_id=request.POST['p_id']
         p_password=request.POST['p_password']
         print(p_id,p_password)
-        p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
-        if p_user is not None:
-           login(request, p_user)
+        patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+        # p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
+        print(patient_user)
+        if patient_user is not None:
+           login(request, patient_user)
            return redirect('patient_homepage')
             
         else: 
