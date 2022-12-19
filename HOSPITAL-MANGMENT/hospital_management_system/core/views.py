@@ -38,24 +38,47 @@ def Doctor_signup(request):
     return render(request, 'Doctor_signup.html',context)
 
 def login_patient(request):
-    # if request.method== 'GET':
-        
 
     if request.method == 'POST':
         p_id=request.POST['p_id']
         p_password=request.POST['p_password']
         print(p_id,p_password)
-        patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-        # p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
-        print(patient_user)
-        if patient_user is not None:
-           login(request, patient_user)
-           return redirect('patient_homepage')
-            
+        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
+        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
+        if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
+            return render(request,patient_homepage.html)
+           #return redirect('patient_homepage')
         else: 
             return redirect('login_patient')
     else:
         return render(request, 'login_patient.html',{})
+
+
+
+
+
+
+
+
+
+
+    # # if request.method== 'GET':
+    # if request.method == 'POST':
+    #     p_id=request.POST['p_id']
+    #     p_password=request.POST['p_password']
+    #     print(p_id,p_password)
+    #     patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+    #     # p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
+    #     print(patient_user)
+    #     if patient_user is not None:
+    #        login(request, patient_user)
+    #        return redirect('patient_homepage')
+            
+    #     else: 
+    #         return redirect('login_patient')
+    # else:
+    #     return render(request, 'login_patient.html',{})
             # context={"error": "Invalid id patient"}
             # return HttpResponse("<h1>//////////// hospital mangment system website")
             # render(request, 'login_patient.html',context)
@@ -73,20 +96,20 @@ def login_patient(request):
 def patient_homepage(request):
      return render(request,patient_homepage.html)
 
-# def patient_signup(requst):
-#     First_name=requst.POST.get('firstname')
-#     print(First_name)
-#     Last_name=requst.POST.get('lastname')
-#     Phone_Number1=requst.POST.get('phone')
-#     Address=requst.POST.get('Address')
-#     Email_Address=requst.POST.get('email')
-#     Birth_Date=requst.POST.get('birthday')
-#     patientֹID= requst.POST.get('patientid')
-#     password_patientֹ= requst.POST.get('psw')
+def patient_signup(requst):
+    First_name=requst.POST.get('firstname')
+    print(First_name)
+    Last_name=requst.POST.get('lastname')
+    Phone_Number1=requst.POST.get('phone')
+    Address=requst.POST.get('Address')
+    Email_Address=requst.POST.get('email')
+    Birth_Date=requst.POST.get('birthday')
+    patientֹID= requst.POST.get('patientid')
+    password_patientֹ= requst.POST.get('psw')
 
-#     mypatientdata=patient_a(patientֹID= patientֹID ,First_name=First_name,Last_name=Last_name,Phone_Number=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_patientֹ=password_patientֹ)
-#     mypatientdata.save()
-#     return render(requst,'patient_signup.html')
+    mypatientdata=patient_a(patientֹID= patientֹID ,First_name=First_name,Last_name=Last_name,Phone_Number=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_patientֹ=password_patientֹ)
+    mypatientdata.save()
+    return render(requst,'patient_signup.html')
 
 
 # def login_Doctor(requst):
@@ -122,3 +145,16 @@ def patient_homepage(request):
 def logout_view(request):
     logout(request)
     return redirect(request,index)
+
+
+def login_Doctor(request):
+    return render(request,'login_Doctor.html')
+
+def AdminLogin(request):
+    return render(request,'AdminLogin.html')
+
+
+
+
+
+

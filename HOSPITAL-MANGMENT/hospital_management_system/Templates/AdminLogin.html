@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 <style>
-body {font-family:'Times New Roman', Times, serif; text-align: center;background-color: #2deca3;}
+body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
 /* Full-width input fields */
@@ -13,12 +12,11 @@ input[type=text], input[type=password] {
   display: inline-block;
   border: none;
   background: #f1f1f1;
-  text-align: center;
 }
 
 /* Add a background color when the inputs get focus */
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #f1f1f1;
+  background-color: #ddd;
   outline: none;
 }
 
@@ -26,34 +24,28 @@ input[type=text]:focus, input[type=password]:focus {
 button {
   background-color: #04AA6D;
   color: white;
-  padding: 20px 10px;
-  margin: 5px 0;
+  padding: 14px 20px;
+  margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   opacity: 0.9;
 }
 
 button:hover {
   opacity:1;
-  text-align: center;
 }
 
 /* Extra styles for the cancel button */
 .cancelbtn {
+  padding: 14px 20px;
   background-color: #f44336;
-  padding: 20px 10px;
-  margin: 5px 0;
-  border: none;
-  cursor: pointer;
-  opacity: 0.9;
-  text-align: center;
 }
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
-    text-align: center;
-     width: 50%;
+  float: left;
+  width: 50%;
 }
 
 /* Add padding to container elements */
@@ -77,15 +69,15 @@ button:hover {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #2deca3;
+  background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #2deca3;
+  border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */
 hr {
-  border: 1px solid #2deca3;
+  border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
  
@@ -96,7 +88,7 @@ hr {
   top: 15px;
   font-size: 40px;
   font-weight: bold;
-  color: #2deca3;
+  color: #f1f1f1;
 }
 
 .close:hover,
@@ -116,7 +108,7 @@ hr {
 @media screen and (max-width: 300px) {
   .cancelbtn, .signupbtn {
      width: 100%;
-    }
+  }
 }
 </style>
 <body>
@@ -125,8 +117,8 @@ hr {
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content" action="/action_page.py">
     <div class="container">
-      <h1> Admin Login Page</h1>
-      <p>fill this form to login, Please</p>
+      <h1> Login Admin</h1>
+      <p>Please fill in this form to login.</p>
       <hr>
 
        <div class="container">
@@ -135,6 +127,8 @@ hr {
 
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit">Login</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
@@ -144,7 +138,9 @@ hr {
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
     <hr>
-    <div class="clearfix">
-        <button type="submit" class="loginbtn">login</button> <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-    
-      </div>
+      <p>creat new account <a href="#" style="color:dodgerblue">sign up</a>.</p>
+      <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button> 
+    </div>   
+</body>
+</html>

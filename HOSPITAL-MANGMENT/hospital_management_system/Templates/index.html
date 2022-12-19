@@ -86,12 +86,14 @@ button:hover {
         <h1></h1>
 
 	 <div class="clearfix">
-      <a href="login_Doctor/"> <button type="button" class="">Enter to log in as Doctor</button> </a>
+      <a href="{% url 'login_Doctor'%}"> 
+      <button type="button" class="">Enter to log in as Doctor</button> </a>
     </div>
 	<h1></h1>
 
 	<div class="clearfix">
-   <a href="AdminLogin/"> <button type="button" class="">Enter to log in as Admin</button></a> 
+   <a href="{% url 'AdminLogin'%}">
+     <button type="button" class="">Enter to log in as Admin</button></a> 
     </div> 
 
    
