@@ -9,12 +9,12 @@ urlpatterns=[
     # path('AdminLogin/',AdminLogin,name="AdminLogin"),
     # path('AskDoctor/',AskDoctor,name="AskDoctor"),
 
-    path('signup_patient/',signup_patient,name="signup_patient"),
+    path('signup-patient/',signup_patient,name="signup_patient"),
     path('Doctor_signup/',Doctor_signup,name="Doctor_signup"),
-    path('login_patient/',login_patient,name="login_patient"),
-    path('patient_homepag/',patient_homepage,name="patient_homepage"),
-    path('login_Doctor/',login_Doctor,name="login_Doctor"),
-    path('AdminLogin/',AdminLogin,name="AdminLogin"),
+    path('login-patient/',login_patient,name="login_patient"),
+    path('patient-homepag/',patient_homepage,name="patient_homepage"),
+    path('login-Doctor/',login_Doctor,name="login_Doctor"),
+    path('adminLogin/',AdminLogin,name="AdminLogin"),
 
 ]
 
