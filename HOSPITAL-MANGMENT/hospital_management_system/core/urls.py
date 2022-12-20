@@ -14,8 +14,8 @@ urlpatterns=[
     path('login-patient/',login_patient,name="login_patient"),
     path('patient-homepag/',patient_homepage,name="patient_homepage"),
     path('login-Doctor/',login_Doctor,name="login_Doctor"),
-    path('adminLogin/',AdminLogin,name="AdminLogin"),
-
+    path('AdminLogin/',AdminLogin,name="AdminLogin"),
+    path('admin_profile/',admin_profile,name="admin_profile"),
 ]
 
 

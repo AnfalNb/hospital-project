@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a
+from .models import patient_a,doctor_a,hospital_admin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -135,8 +135,22 @@ def Doctor_signup(requst):
 # def login_patient(requst):
 #     return render(requst,'login_patient.html')
 
-def AdminLogin (requst):
-    return render(requst,'AdminLogin.html')
+def AdminLogin (request):
+    if request.method == 'POST':
+        Admin_username=request.POST['username']
+        Admin_password=request.POST['password']
+        print(Admin_username,Admin_password)
+        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
+        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
+        if hospital_admin.objects.filter(username=Admin_username ,password=Admin_password ).exists():
+            return render(request,'admin_profile.html')
+           #return redirect('patient_homepage')
+        else: 
+            return redirect('AdminLogin')
+    else:
+        return render(request, 'AdminLogin.html',{})
+
 
 def AskDoctor (requst):
     return render(requst,'AskDoctor.html')    
@@ -151,8 +165,8 @@ def logout_view(request):
 def login_Doctor(request):
     return render(request,'login_Doctor.html')
 
-def AdminLogin(request):
-    return render(request,'AdminLogin.html')
+def admin_profile(request):
+    return render(request,'admin_profile.html')
 
 
 

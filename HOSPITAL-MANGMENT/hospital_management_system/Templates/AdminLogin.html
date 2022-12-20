@@ -115,7 +115,8 @@ hr {
 
 
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/action_page.py">
+  <form class="modal-content" action="" method="POST">
+    {% csrf_token %}
     <div class="container">
       <h1> Login Admin</h1>
       <p>Please fill in this form to login.</p>
@@ -123,12 +124,12 @@ hr {
 
        <div class="container">
       <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <input type="text" placeholder="Enter Username" name="username" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input type="password" placeholder="Enter Password" name="password" required>
         
-      <button type="submit">Login</button>
+      <button type="submit"><a href="{% url 'admin_profile'%}" style="color:dodgerblue">Login</a></button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
@@ -138,7 +139,7 @@ hr {
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
     <hr>
-      <p>creat new account <a href="#" style="color:dodgerblue">sign up</a>.</p>
+      <!-- <p>creat new account <a href="#" style="color:dodgerblue">sign up</a>.</p> -->
       <div class="container" style="background-color:#f1f1f1">
           <button type="button" class="cancelbtn">Cancel</button> 
     </div>   
