@@ -2,6 +2,36 @@
 
 <form method="POST" action="">
     {% csrf_token %}
-    {{form}}
+
+    {{form.DoctorID.label}}
+    {{form.DoctorID}}
+
+    {{form.First_name.label}}
+    {{form.First_name}}
+
+    {{form.Last_name.label}}
+    {{form.Last_name}}
+
+    {{form.Phone_Number1.label}}
+    {{form.Phone_Number1}}
+
+    {{form.Address.label}}
+    {{form.Address}}
+
+    {{form.Email_Address.label}}
+    {{form.Email_Address}}
+
+    {{form.Birth_Date.label}}
+    {{form.Birth_Date}}
+
+    {{form.Medical_Field.label}}
+    {{form.Medical_Field}}
+
+    {{form.File_Diploma.label}}
+    {{form.File_Diploma}}
+
+    {{form.password_Doctor.label}}
+    {{form.password_Doctor}}
+
 <input type="submit" name="Creat User">
 </form>

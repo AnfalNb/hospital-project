@@ -23,7 +23,7 @@ def signup_patient(request):
     print("requst here!!!")
     if form.is_valid():
             form.save()
-            return render(request, 'patient_homepage.html')
+            return render(request, 'login_patient.html')
 
     context={'form':form}
     return render(request, 'signup_patient.html',context)
@@ -33,7 +33,7 @@ def Doctor_signup(request):
     form=doctorform(request.POST or None)
     if form.is_valid():
             form.save()
-            return render(request, 'doctor_profile.html')
+            return render(request, 'login_Doctor.html')
 
     context={'form':form}
     return render(request, 'Doctor_signup.html',context)
@@ -95,22 +95,22 @@ def login_patient(request):
 
 
 def patient_homepage(request):
-     return render(request,patient_homepage.html)
+     return render(request,'patient_homepage.html')
 
-def patient_signup(requst):
-    First_name=requst.POST.get('firstname')
-    print(First_name)
-    Last_name=requst.POST.get('lastname')
-    Phone_Number1=requst.POST.get('phone')
-    Address=requst.POST.get('Address')
-    Email_Address=requst.POST.get('email')
-    Birth_Date=requst.POST.get('birthday')
-    patientֹID= requst.POST.get('patientid')
-    password_patientֹ= requst.POST.get('psw')
+# def patient_signup(requst):
+#     First_name=requst.POST.get('firstname')
+#     print(First_name)
+#     Last_name=requst.POST.get('lastname')
+#     Phone_Number1=requst.POST.get('phone')
+#     Address=requst.POST.get('Address')
+#     Email_Address=requst.POST.get('email')
+#     Birth_Date=requst.POST.get('birthday')
+#     patientֹID= requst.POST.get('patientid')
+#     password_patientֹ= requst.POST.get('psw')
 
-    mypatientdata=patient_a(patientֹID= patientֹID ,First_name=First_name,Last_name=Last_name,Phone_Number=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_patientֹ=password_patientֹ)
-    mypatientdata.save()
-    return render(requst,'patient_signup.html')
+#     mypatientdata=patient_a(patientֹID= patientֹID ,First_name=First_name,Last_name=Last_name,Phone_Number=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_patientֹ=password_patientֹ)
+#     mypatientdata.save()
+#     return render(requst,'patient_signup.html')
 
 
 def login_Doctor(request):
@@ -130,20 +130,20 @@ def login_Doctor(request):
         return render(request, 'login_Doctor.html',{})
 
 #=============================================================================================================================
-def Doctor_signup(requst):
-    First_name=requst.POST.get('firstname')
-    print(First_name)
-    Last_name=requst.POST.get('lastname')
-    Phone_Number1=requst.POST.get('phone')
-    Address=requst.POST.get('Address')
-    Email_Address=requst.POST.get('email')
-    Birth_Date=requst.POST.get('birthday')
-    doctorID= requst.POST.get('DoctorId')
-    password_Doctor= requst.POST.get('psw')
+# def Doctor_signup(requst):
+#     First_name=requst.POST.get('firstname')
+#     print(First_name)
+#     Last_name=requst.POST.get('lastname')
+#     Phone_Number1=requst.POST.get('phone')
+#     Address=requst.POST.get('Address')
+#     Email_Address=requst.POST.get('email')
+#     Birth_Date=requst.POST.get('birthday')
+#     doctorID= requst.POST.get('DoctorId')
+#     password_Doctor= requst.POST.get('psw')
    
-    mydoctordata=doctor_a(DoctorID= doctorID ,First_name=First_name,Last_name=Last_name,Phone_Number1=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_Doctor=password_Doctor)
-    mydoctordata.save()
-    return render(requst,'Doctor_signup.html')
+#     mydoctordata=doctor_a(DoctorID= doctorID ,First_name=First_name,Last_name=Last_name,Phone_Number1=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_Doctor=password_Doctor)
+#     mydoctordata.save()
+#     return render(requst,'Doctor_signup.html')
 
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
