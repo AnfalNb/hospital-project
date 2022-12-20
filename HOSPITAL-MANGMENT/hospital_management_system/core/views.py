@@ -113,9 +113,23 @@ def patient_signup(requst):
     return render(requst,'patient_signup.html')
 
 
-def login_Doctor(requst):
-    return render(requst,'login_Doctor.html')
+def login_Doctor(request):
+    if request.method == 'POST':
+        doctor_id=request.POST['doc_id']
+        dpctor_password=request.POST['doc_password']
+        print(doctor_id,dpctor_password)
+        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
+        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
+        if doctor_a.objects.filter(DoctorID=doctor_id ,password_Doctor=dpctor_password).exists():
+            return render(request,'doctor_profile.html')
+           #return redirect('patient_homepage')
+        else: 
+            return redirect('login_Doctor')
+    else:
+        return render(request, 'login_Doctor.html',{})
 
+#=============================================================================================================================
 def Doctor_signup(requst):
     First_name=requst.POST.get('firstname')
     print(First_name)
@@ -131,6 +145,8 @@ def Doctor_signup(requst):
     mydoctordata.save()
     return render(requst,'Doctor_signup.html')
 
+def doctor_profile(request):
+    return render(request,'doctor_profile.html')
 
 # def login_patient(requst):
 #     return render(requst,'login_patient.html')
@@ -161,9 +177,6 @@ def logout_view(request):
     logout(request)
     return redirect(request,index)
 
-
-def login_Doctor(request):
-    return render(request,'login_Doctor.html')
 
 def admin_profile(request):
     return render(request,'admin_profile.html')
