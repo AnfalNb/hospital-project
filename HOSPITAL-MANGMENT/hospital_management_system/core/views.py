@@ -182,3 +182,6 @@ def doctor_profile(request):
         # return redirect('patient_homepage.html')
 #    return render(request, 'login_patient.html',{})
 
+
+
+

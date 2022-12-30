@@ -39,3 +39,15 @@ class hospital_admin(models.Model):
     password=models.CharField(max_length=30,null=True)
     class Meta:
         db_table = 'hospital_admin'
+
+class messages(models.Model): #patient messages
+    patientֹName=models.CharField(max_length=20,null = True)
+    matter=models.CharField(max_length=10,null=True)
+    message=models.TextField(max_length=50,null=True)
+    Email_Address=models.CharField(max_length=30,null=True)
+    
+
+
+
+    class Meta:
+        db_table = 'messages'
