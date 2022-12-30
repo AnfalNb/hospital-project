@@ -183,5 +183,7 @@ def doctor_profile(request):
 #    return render(request, 'login_patient.html',{})
 
 
-
+class patientList(ListView):
+    model = patient_a
+    template_name = 'patientList.html'
 
