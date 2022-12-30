@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import patientform,doctorform
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from django.views.generic import ListView
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -180,3 +181,4 @@ def doctor_profile(request):
         
         # return redirect('patient_homepage.html')
 #    return render(request, 'login_patient.html',{})
+
