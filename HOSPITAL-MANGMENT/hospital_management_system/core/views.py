@@ -183,8 +183,3 @@ def doctor_profile(request):
 
 
 
-def book_appointment():
-    return () 
-
-
-# trying to marge 
