@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a,hospital_admin
+from .models import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform
+from .forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 # import django.contrib.auth as auth
@@ -120,6 +120,19 @@ def admin_profile(request):
     
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
+
+
+def   work_schedule(request):
+    context={}
+    if request.POST:
+        form=WorkScheduleForm(request.POST)
+        if form.is_valid():
+            WorkSchedule=form.save(commit=False)
+            WorkSchedule.owner=request.user.pk
+            work_schedule.save()
+    form=WorkScheduleForm()
+    context['form']=form        
+    return render(request, 'work_schedule.html')
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')
