@@ -121,6 +121,13 @@ def admin_profile(request):
     
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
+
+
+def logout_admin(request):
+    logout(request)
+    messages.add_message(request, messages.SUCCESS, 
+                             "successfully logged out")
+    return redirect(render, 'logout_admin')
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')
