@@ -59,9 +59,12 @@ def login_patient(request):
         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
-            return render(request,'patient_homepage.html')
-           #return redirect('patient_homepage')
+            # return render(request,'patient_homepage.html')
+            request.session['patient_id'] = p_id
+            return redirect('patient_homepage')
         else: 
+            messages.error(request, 'Invalid patient ID or password')
+
             return redirect('login_patient')
     else:
         return render(request, 'login_patient.html',{})
@@ -71,8 +74,15 @@ def login_patient(request):
 
 
 
+
+
 def patient_homepage(request):
-     return render(request,'patient_homepage.html')
+    # Get the patient's ID from the session data
+    patient_id = request.session['patient_id']
+    # Retrieve the patient's data from the database
+    patient = patient_a.objects.get(patientֹID=patient_id)
+    # Render the profile page with the patient's data
+    return render(request, 'patient_homepage.html', {'patient': patient})
 
 
 
@@ -196,3 +206,15 @@ class doctorList(ListView):
     template_name = 'doctorList.html'
 def userslist(request):
     return render(request,'userslist.html')
+
+
+def update_patient(request, patient_id):
+    patient = patient_a.objects.get(pk=patient_id)  # Retrieve the patient instance from the database
+    if request.method == 'POST':
+        form = patientform(request.POST, instance=patient)  # Pass the patient instance to the form
+        if form.is_valid():
+            form.save()  # Save the form to update the patient instance in the database
+            return redirect('patient_homepage')  # Redirect to the homepage after the update is successful
+    else:
+        form = patientform(instance=patient)  # Create the form with the patient instance data
+    return render(request, 'update_patient.html', {'form': form, 'patient': patient})

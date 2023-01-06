@@ -88,7 +88,7 @@ button:hover {
 
 <form method =  "POST"  action="" style="border:1px solid #ccc">
   <div class="container">
-    <h1>patient profile</h1>
+    <h1>Welcome {{patient.First_name}} !</h1>
   
     <hr>
 
@@ -136,8 +136,8 @@ button:hover {
 
 
     <div class="clearfix">
-      
-      <button type="button" class="">update information</button> 
+      <a href="{% url 'update_patient' patient.pk %}">
+      <button type="button" class="">update information</button> </a>
     </div>
         <h1></h1>
 
@@ -147,8 +147,8 @@ button:hover {
         <h1></h1>
 
    
-  
 </form>
 
 </body>
 </html>
+

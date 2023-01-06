@@ -11,7 +11,27 @@ class patientform(forms.ModelForm):
         fields= [
             'patientֹID','First_name','Last_name','Phone_Number','Address','Email_Address','Birth_Date','password_patientֹ'
             ]
+        labels ={
+            'patientֹID' : 'ID' ,
+            'First_name': 'First name',
+            'Last_name':'Last name',
+            'Phone_Number':'Phone Number',
+            'Address':  'Address',
+           ' Email_Address': 'Email Address',
+            'Birth_Date':'Birth Date:',
+            'password_patientֹ': 'password',
+        }
+        widgets = {
+            'patientֹID' : forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),
+            'First_name': forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
+            'Last_name':forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
+            'Phone_Number':forms.TextInput(attrs={'class':'form-control'}),
+            'Address': forms.TextInput(attrs={'class':'form-control'}),
+           ' Email_Address': forms.EmailInput(attrs={'class':'form-control'}),
+            'Birth_Date':forms.DateInput(attrs={'class':'form-control','readonly':'readonly'}),
+            'password_patientֹ': forms.TextInput(attrs={'class':'form-control','type': "password"}),
 
+        }
 
 class doctorform(forms.ModelForm):
     class Meta:
