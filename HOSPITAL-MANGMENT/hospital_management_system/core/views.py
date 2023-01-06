@@ -10,6 +10,7 @@ from .forms import patientform,doctorform
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
+from django.template import loader
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -98,10 +99,17 @@ def AdminLogin (request):
         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if hospital_admin.objects.filter(username=Admin_username ,password=Admin_password ).exists():
+            # context = {
+            #     'result': "disappear",
+            # }
             return render(request,'admin_profile.html')
            #return redirect('patient_homepage')
         else: 
-            return redirect('AdminLogin')
+            context = {
+                'result': "Username or password is not correct",
+            }
+            template = loader.get_template('AdminLogin.html')
+            return HttpResponse(template.render(context, request))
     else:
         return render(request, 'AdminLogin.html',{})
 
