@@ -4,7 +4,7 @@ from django.db import models
 
 # python classes for database
 class doctor_a(models.Model):
-    DoctorID=models.CharField(max_length=20,null = True)
+    DoctorID=models.CharField(max_length=9, primary_key=True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number1=models.CharField(max_length=20, null=True)
@@ -22,7 +22,7 @@ class doctor_a(models.Model):
     
     
 class patient_a(models.Model):
-    patientֹID=models.CharField(max_length=20,null = True)
+    patientֹID=models.CharField(max_length=20,primary_key=True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number=models.CharField(max_length=10,null=True)
@@ -33,6 +33,8 @@ class patient_a(models.Model):
 
     class Meta:
         db_table = 'patient_a'
+    def __str__(self):
+        return self.patientֹID
 
 class hospital_admin(models.Model):
     username=models.CharField(max_length=30,null = True)

@@ -17,10 +17,12 @@ urlpatterns=[
     path('AdminLogin/',AdminLogin,name="AdminLogin"),
     path('admin_profile/',admin_profile,name="admin_profile"),
     path('doctor_profile/',doctor_profile,name="doctor_profile"), 
-    path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
+    # path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
     path('patientList/',patientList.as_view(),name="patientList"), 
-    
-]
+    path('doctorList/',doctorList.as_view(),name="doctorList"), 
+    path('userslist/',userslist,name ='userslist'),
+
+     ]
 
 
 

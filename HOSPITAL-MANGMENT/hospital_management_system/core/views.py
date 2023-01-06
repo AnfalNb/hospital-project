@@ -1,5 +1,6 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from audioop import reverse
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
 from .models import patient_a,doctor_a,hospital_admin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -9,7 +10,10 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import patientform,doctorform
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.views.generic import ListView
+from django.views.generic import ListView,UpdateView
+from django.template.loader import render_to_string
+
+
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -72,6 +76,8 @@ def patient_homepage(request):
 
 
 
+
+
 def login_Doctor(request):
     if request.method == 'POST':
         doctor_id=request.POST['doc_id']
@@ -118,7 +124,7 @@ def logout_view(request):
 
 def admin_profile(request):
     return render(request,'admin_profile.html')
-    
+
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
 #=============================================================================================================================
@@ -182,8 +188,11 @@ def doctor_profile(request):
         # return redirect('patient_homepage.html')
 #    return render(request, 'login_patient.html',{})
 
-
 class patientList(ListView):
     model = patient_a
     template_name = 'patientList.html'
-
+class doctorList(ListView):
+    model = doctor_a
+    template_name = 'doctorList.html'
+def userslist(request):
+    return render(request,'userslist.html')
