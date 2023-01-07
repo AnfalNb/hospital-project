@@ -68,13 +68,13 @@
 </style>
 
 <div class="navbar">
-    <a href="{% url 'patient_homepage'%} " class="active">Home</a>
+    <a href="{% url 'doctor_profile'%} " class="active">Home</a>
     <a href="#" class="right">LOG OUT</a>
   </div>
 
 <br>
 <br>
-<form action="{% url 'update_patient' patient.pk %}" method="post" style="border:1px solid #ccc ; width: 75%; margin: auto">
+<form action="{% url 'update_doctor' doctor.pk %}" method="post" style="border:1px solid #ccc ; width: 75%; margin: auto">
     <div class="container">
         <h1>Update Your Information</h1>
         <p>Please fill in this form to Update Your Information.</p>
@@ -82,8 +82,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update</button>
-        <a href="{% url 'patient_homepage' %}" class="button"><button>Cancel</button></a>
+        <a href="{% url 'doctor_profile' %}" class="button"><button>Cancel</button></a>
     </div>
 </form>
 <br>
-

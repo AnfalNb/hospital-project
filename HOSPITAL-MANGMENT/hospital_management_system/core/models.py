@@ -7,7 +7,7 @@ class doctor_a(models.Model):
     DoctorID=models.CharField(max_length=9, primary_key=True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
-    Phone_Number1=models.CharField(max_length=20, null=True)
+    Phone_Number1=models.CharField(max_length=10, null=True)
     Address=models.CharField(max_length=50,null=True)
     Email_Address=models.CharField(max_length=30,null=True)
     Birth_Date=models.DateField(null=True)

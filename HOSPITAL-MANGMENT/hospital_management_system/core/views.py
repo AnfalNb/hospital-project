@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform
+from .forms import doctorupdateform, patientform,doctorform
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView,UpdateView
@@ -31,13 +31,13 @@ def signup_patient(request):
     context={'form':form}
     return render(request, 'signup_patient.html',context)
 
-def update_patient(request,patientֹID): #not completed 
-    patient=patient_a.objects.get(pk=patientֹID)
-    form=patientform(request.POST or None,instance=patient)
-    if form.is_valid(): 
-            form.save()
-            return redirect('')
-    return render(request, 'signup_patient.html',{'patient':patient,'form':form })
+# def update_patient(request,patientֹID): #not completed 
+#     patient=patient_a.objects.get(pk=patientֹID)
+#     form=patientform(request.POST or None,instance=patient)
+#     if form.is_valid(): 
+#             form.save()
+#             return redirect('')
+#     return render(request, 'signup_patient.html',{'patient':patient,'form':form })
 
 
 def Doctor_signup(request):
@@ -97,8 +97,10 @@ def login_Doctor(request):
         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if doctor_a.objects.filter(DoctorID=doctor_id ,password_Doctor=dpctor_password).exists():
-            return render(request,'doctor_profile.html')
-           #return redirect('patient_homepage')
+            # return render(request,'doctor_profile.html')
+            request.session['doctor_id'] = doctor_id
+
+            return redirect('doctor_profile')
         else: 
             return redirect('login_Doctor')
     else:
@@ -136,7 +138,10 @@ def admin_profile(request):
     return render(request,'admin_profile.html')
 
 def doctor_profile(request):
-    return render(request,'doctor_profile.html')
+    doctor_id = request.session['doctor_id']
+    doctor = doctor_a.objects.get(DoctorID=doctor_id)
+    return render(request, 'doctor_profile.html', {'doctor': doctor})
+
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')
@@ -218,3 +223,18 @@ def update_patient(request, patient_id):
     else:
         form = patientform(instance=patient)  # Create the form with the patient instance data
     return render(request, 'update_patient.html', {'form': form, 'patient': patient})
+
+
+
+
+
+def update_doctor(request, doctor_id):
+    doctor = doctor_a.objects.get(pk=doctor_id)  # Retrieve the doctor instance from the database
+    if request.method == 'POST':
+        form = doctorupdateform(request.POST, instance=doctor)  # Pass the doctor instance to the form
+        if form.is_valid():
+            form.save()  # Save the form to update the doctor instance in the database
+            return redirect('doctor_profile')  # Redirect to the doctor list page after the update is successful
+    else:
+        form = doctorupdateform(instance=doctor)  # Create the form with the doctor instance data
+    return render(request, 'update_doctor.html', {'form': form, 'doctor': doctor})    
