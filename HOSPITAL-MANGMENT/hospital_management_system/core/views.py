@@ -238,3 +238,17 @@ def update_doctor(request, doctor_id):
     else:
         form = doctorupdateform(instance=doctor)  # Create the form with the doctor instance data
     return render(request, 'update_doctor.html', {'form': form, 'doctor': doctor})    
+
+
+from django.views.generic import TemplateView
+
+class doctorDetailView(TemplateView):
+    template_name = 'doctor_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Doctor'] = doctor_a.objects.get(pk=kwargs['DoctorID'])
+        return context
+
+
+
