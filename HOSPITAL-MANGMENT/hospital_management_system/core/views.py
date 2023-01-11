@@ -256,3 +256,8 @@ def delete_doctor(request, id):
     obj.delete()
     return redirect('doctorList')
 
+
+def delete_patient(request, id):
+    obj =patient_a.objects.get(pk=id)
+    obj.delete()
+    return redirect('patientList')
