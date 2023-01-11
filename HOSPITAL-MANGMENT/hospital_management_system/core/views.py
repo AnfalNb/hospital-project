@@ -10,7 +10,6 @@ from .forms import patientform,doctorform,AppointmentForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
-from django.template import loader
 
 # import django.contrib.auth as auth
 # Create your views here.
@@ -100,17 +99,10 @@ def AdminLogin (request):
         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if hospital_admin.objects.filter(username=Admin_username ,password=Admin_password ).exists():
-            # context = {
-            #     'result': "disappear",
-            # }
             return render(request,'admin_profile.html')
            #return redirect('patient_homepage')
         else: 
-            context = {
-                'result': "Username or password is not correct",
-            }
-            template = loader.get_template('AdminLogin.html')
-            return HttpResponse(template.render(context, request))
+            return redirect('AdminLogin')
     else:
         return render(request, 'AdminLogin.html',{})
 
@@ -130,13 +122,6 @@ def admin_profile(request):
     
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
-
-
-def logout_admin(request):
-    logout(request)
-    messages.add_message(request, messages.SUCCESS, 
-                             "successfully logged out")
-    return redirect(render, 'logout_admin')
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')
