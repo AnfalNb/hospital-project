@@ -40,14 +40,26 @@ class hospital_admin(models.Model):
     class Meta:
         db_table = 'hospital_admin'
 
-class messages(models.Model): #patient messages
-    patientֹName=models.CharField(max_length=20,null = True)
-    matter=models.CharField(max_length=10,null=True)
-    message=models.TextField(max_length=50,null=True)
-    Email_Address=models.CharField(max_length=30,null=True)
+# class messages(models.Model): #patient messages
+#     patientֹName=models.CharField(max_length=20,null = True)
+#     matter=models.CharField(max_length=10,null=True)
+#     message=models.TextField(max_length=50,null=True)
+#     Email_Address=models.CharField(max_length=30,null=True)
     
 
 
 
+#     class Meta:
+#         db_table = 'messages'
+
+
+# CharField
+
+
+class Appointment(models.Model):
+    DoctorName=models.CharField(max_length=30,null=True)
+    medical_field=models.CharField(max_length=30,null=True)
+    Date=models.DateField(null=True)
+    time=models.TimeField(null=True)
     class Meta:
-        db_table = 'messages'
+        db_table = 'appointment'

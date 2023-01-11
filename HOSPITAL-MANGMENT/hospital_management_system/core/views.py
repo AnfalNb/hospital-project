@@ -1,16 +1,20 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a,hospital_admin
+from .models import patient_a,doctor_a,hospital_admin,Appointment
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform
+from .forms import patientform,doctorform,AppointmentForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
+<<<<<<< HEAD
 from django.template import loader
+=======
+
+>>>>>>> asia
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -158,47 +162,45 @@ def logout_admin(request):
 #     return render(requst,'login_patient.html')
 
 
-# def patient_signup(requst):
-#     First_name=requst.POST.get('firstname')
-#     print(First_name)
-#     Last_name=requst.POST.get('lastname')
-#     Phone_Number1=requst.POST.get('phone')
-#     Address=requst.POST.get('Address')
-#     Email_Address=requst.POST.get('email')
-#     Birth_Date=requst.POST.get('birthday')
-#     patientֹID= requst.POST.get('patientid')
-#     password_patientֹ= requst.POST.get('psw')
-
-#     mypatientdata=patient_a(patientֹID= patientֹID ,First_name=First_name,Last_name=Last_name,Phone_Number=Phone_Number1,Address=Address,Email_Address=Email_Address,Birth_Date=Birth_Date,password_patientֹ=password_patientֹ)
-#     mypatientdata.save()
-#     return render(requst,'patient_signup.html')
 
 
- # # if request.method== 'GET':
-    # if request.method == 'POST':
-    #     p_id=request.POST['p_id']
-    #     p_password=request.POST['p_password']
-    #     print(p_id,p_password)
-    #     patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-    #     # p_user=authenticate(patientֹID=p_id ,password_patientֹ=p_password )
-    #     print(patient_user)
-    #     if patient_user is not None:
-    #        login(request, patient_user)
-    #        return redirect('patient_homepage')
-            
-    #     else: 
-    #         return redirect('login_patient')
-    # else:
-    #     return render(request, 'login_patient.html',{})
-            # context={"error": "Invalid id patient"}
-            # return HttpResponse("<h1>//////////// hospital mangment system website")
-            # render(request, 'login_patient.html',context)
-        
-        # return redirect('patient_homepage.html')
-#    return render(request, 'login_patient.html',{})
-
+ 
 
 class patientList(ListView):
     model = patient_a
     template_name = 'patientList.html'
+
+
+
+
+
+ 
+
+
+
+
+   
+
+
+
+# def appointment_list(request):
+#     if request.method == 'POST':
+#         form = AppointmentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#     else:
+#         form = AppointmentForm()
+#     appointments = Appointment.objects.all()
+#     return render(request, 'appointment_list.html', {'form': form, 'appointments': appointments})
+
+
+
+class appointmentList(ListView):
+    model = Appointment
+    template_name = 'appointment_list.html'
+
+
+
+#---------------------------------------------------------------------------------
+
 
