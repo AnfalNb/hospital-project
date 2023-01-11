@@ -194,3 +194,9 @@ def add_appointments(request):
 
     context={'form':form}
     return render(request, 'add_appointments.html',context)
+
+
+def delete_appointment(request, id):
+    obj =Appointment.objects.get(pk=id)
+    obj.delete()
+    return redirect('appointmentList')

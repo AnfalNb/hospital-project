@@ -23,7 +23,7 @@ urlpatterns=[
     path('patientList/',patientList.as_view(),name="patientList"), 
     path('appointmentList/',appointmentList.as_view(),name="appointmentList"), 
     path('add_appointments/',views.add_appointments, name='add_appointments'),
-
+    path('delete_appointment/<int:id>/',delete_appointment,name="delete_appointment"),
 ]
 
 

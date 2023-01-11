@@ -250,8 +250,17 @@ h1 {
             <td style="width:5%">
               update</td>
             <td style="width:5%">
-              <a href="#">delete</a></td>
+              <button onclick="return confirmDelete()">Delete</button>
 
+            <script>
+             function confirmDelete() {
+               if (confirm("Are you sure you want to delete this doctor?")) {
+                 // call Django view to delete object
+                 window.location.href = "{% url 'delete_appointment' Appointment.pk %}";
+               }
+            return false;
+        }
+        </script>
           </tr> 
         {% endfor %}
         
