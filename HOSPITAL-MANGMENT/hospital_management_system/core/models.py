@@ -62,4 +62,4 @@ class Appointment(models.Model):
     Date=models.DateField(null=True)
     time=models.TimeField(null=True)
     class Meta:
-        db_table = 'Appointment'
+        db_table = 'appointment'
