@@ -165,16 +165,14 @@ class patientList(ListView):
 
 
 
-# def appointment_list(request):
-#     if request.method == 'POST':
-#         form = AppointmentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#     else:
-#         form = AppointmentForm()
-#     appointments = Appointment.objects.all()
-#     return render(request, 'appointment_list.html', {'form': form, 'appointments': appointments})
+def add_appointments(request):
+    form=AppointmentForm(request.POST)
+    if form.is_valid():
+            form.save()
+            return redirect('appointmentList')
 
+    context={'form':form}
+    return render(request, 'add_appointments.html',context)
 
 
 class appointmentList(ListView):
@@ -183,6 +181,12 @@ class appointmentList(ListView):
 
 
 
-#---------------------------------------------------------------------------------
+def add_appointments(request):
+    form=AppointmentForm(request.POST)
+    if form.is_valid():
+            form.save()
+            return redirect('appointmentList')
 
+    context={'form':form}
+    return render(request, 'add_appointments.html',context)
 
