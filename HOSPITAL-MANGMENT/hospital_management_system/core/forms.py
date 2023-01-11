@@ -1,9 +1,11 @@
-from django.forms import ModelForm
+from django.forms import ModelForm 
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import patient_a,doctor_a
+from .models import patient_a,doctor_a,Appointment
+
+
 
 class patientform(forms.ModelForm):
     class Meta:
@@ -20,3 +22,28 @@ class doctorform(forms.ModelForm):
             'DoctorID','First_name','Last_name','Phone_Number1','Address','Email_Address','Birth_Date','Medical_Field','File_Diploma','password_Doctor'
             ]
 
+class AppointmentForm(forms.ModelForm):
+    class Meta:
+        model=Appointment
+        fields= ['DoctorName','medical_field','Date','time']
+
+        labels ={
+            'DoctorName' : 'Doctor Name' ,
+            'medical_field': 'medical_field',
+            'Date':'Date',
+            'time':'time',
+
+        }
+        widgets = {
+
+           'DoctorName'  : forms.TextInput(attrs={'class':'form-control'}),
+           'medical_field': forms.TextInput(attrs={'class':'form-control'}),
+           'Date':forms.DateInput(attrs={'class':'form-control'}),
+           'time' :forms.TimeInput(attrs={'class':'form-control'}),
+           
+        }
+
+
+
+
+        
