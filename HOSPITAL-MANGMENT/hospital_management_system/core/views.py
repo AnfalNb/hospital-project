@@ -200,3 +200,20 @@ def delete_appointment(request, id):
     obj =Appointment.objects.get(pk=id)
     obj.delete()
     return redirect('appointmentList')
+
+
+
+def update_Appointment(request, Appointment_pk):
+    try:
+        appoint = Appointment.objects.get(pk=Appointment_pk)  # Retrieve the patient instance from the database
+    except Appointment.DoesNotExist:
+        # handle the error
+        return redirect('error_page')
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST, instance=appoint)  # Pass the patient instance to the form
+        if form.is_valid():
+            form.save()  # Save the form to update the patient instance in the database
+            return redirect('appointmentList')  # Redirect to the homepage after the update is successful
+    else:
+        form = AppointmentForm(instance=appoint)  # Create the form with the patient instance data
+    return render(request, 'update_Appointment.html', {'form': form, 'Appointment': appoint})

@@ -24,7 +24,7 @@ urlpatterns=[
     path('appointmentList/',appointmentList.as_view(),name="appointmentList"), 
     path('add_appointments/',views.add_appointments, name='add_appointments'),
     path('delete_appointment/<int:id>/',delete_appointment,name="delete_appointment"),
-]
+    path('update_Appointment/<int:Appointment_pk>/',update_Appointment,name="update_Appointment"),]
 
 
 

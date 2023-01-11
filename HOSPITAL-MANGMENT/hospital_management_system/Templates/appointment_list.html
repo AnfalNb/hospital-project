@@ -248,7 +248,7 @@ h1 {
             <td>{{ Appointment.Date }}</td>
             <td>{{ Appointment.time }}</td>
             <td style="width:5%">
-              update</td>
+              <a href="{% url 'update_Appointment' Appointment.pk %}"> update</a></td>
             <td style="width:5%">
               <button onclick="return confirmDelete()">Delete</button>
 
