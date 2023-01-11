@@ -186,3 +186,11 @@ class appointmentList(ListView):
 #---------------------------------------------------------------------------------
 
 
+def add_appointments(request):
+    form=AppointmentForm(request.POST)
+    if form.is_valid():
+            form.save()
+            return redirect('appointmentList')
+
+    context={'form':form}
+    return render(request, 'add_appointments.html',context)
