@@ -21,15 +21,10 @@ urlpatterns=[
     path('doctor_profile/',doctor_profile,name="doctor_profile"), 
     path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
     path('patientList/',patientList.as_view(),name="patientList"), 
-<<<<<<< HEAD
     path('logout_admin/',logout_admin, name="logout_admin"), #admin logout
-
-    
-=======
     path('appointmentList/',appointmentList.as_view(),name="appointmentList"), 
 
 
->>>>>>> asia
 ]
 
 

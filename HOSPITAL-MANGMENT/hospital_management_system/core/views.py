@@ -10,11 +10,8 @@ from .forms import patientform,doctorform,AppointmentForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
-<<<<<<< HEAD
 from django.template import loader
-=======
 
->>>>>>> asia
 # import django.contrib.auth as auth
 # Create your views here.
 
