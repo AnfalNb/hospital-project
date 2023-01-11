@@ -251,4 +251,8 @@ class doctorDetailView(TemplateView):
         return context
 
 
+def delete_doctor(request, id):
+    obj =doctor_a.objects.get(pk=id)
+    obj.delete()
+    return redirect('doctorList')
 

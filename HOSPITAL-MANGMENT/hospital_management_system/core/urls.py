@@ -24,7 +24,8 @@ urlpatterns=[
     path('update_patient/<int:patient_id>/', update_patient, name='update_patient'),
     path('update_doctor/<int:doctor_id>/', update_doctor, name='update_doctor'),
     path('doctor_detail/<int:DoctorID>/', doctorDetailView.as_view(), name='doctor_detail'),
-  
+    path('delete_doctor/<int:id>/',delete_doctor,name="delete_doctor"),
+    
     ]
 
 

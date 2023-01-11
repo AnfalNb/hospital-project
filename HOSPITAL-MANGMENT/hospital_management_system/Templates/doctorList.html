@@ -88,7 +88,7 @@
           <th>patient id</th>
           <th>first name</th>
           <th>last name </th>
-          <th style="width:5%">detail</th>
+          <th style="width:5%">View Details</th>
           <th style="width:5%">delete</th>
 
           <!-- <th></th>
@@ -107,9 +107,20 @@
       <td>{{ doctor_a.Last_name }}</td>
       <!-- <td><a href="#">details</a></td> -->
       <td>
-          <a href="{% url 'doctor_detail' doctor_a.DoctorID %}">View Details</a>
+          <a href="{% url 'doctor_detail' doctor_a.DoctorID %}"><button>Details </button></a>
       </td>
-      <td><a href="#">delete</a></td>
+      <td><button onclick="return confirmDelete()">Delete</button>
+
+        <script>
+        function confirmDelete() {
+            if (confirm("Are you sure you want to delete this doctor?")) {
+                // call Django view to delete docto
+                window.location.href = "{% url 'delete_doctor' doctor_a.pk %}";
+            }
+            return false;
+        }
+        </script>
+        </td>
 
   </tr>
   {% endfor %}
