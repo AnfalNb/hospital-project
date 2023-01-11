@@ -226,6 +226,7 @@ h1 {
           <thead>
             <tr>
               <th style="width:5%">No.</th>
+              <th>ID</th>
               <th>Doctor Name</th>
               <th>medical_field</th>
               <th>Date</th>
@@ -243,6 +244,7 @@ h1 {
           {% for Appointment in object_list %}
           <tr>
             <td>{{ forloop.counter }}</td>
+            <td>{{ ID }}</td>
             <td>{{ Appointment.DoctorName }}</td>
             <td>{{ Appointment.medical_field }}</td>
             <td>{{ Appointment.Date }}</td>

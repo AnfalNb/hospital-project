@@ -25,13 +25,14 @@ class doctorform(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model=Appointment
-        fields= ['DoctorName','medical_field','Date','time']
+        fields= ['DoctorName','medical_field','Date','time','ID']
 
         labels ={
             'DoctorName' : 'Doctor Name' ,
             'medical_field': 'medical_field',
             'Date':'Date',
             'time':'time',
+            'ID':'ID',
 
         }
         widgets = {
@@ -40,7 +41,8 @@ class AppointmentForm(forms.ModelForm):
            'medical_field': forms.TextInput(attrs={'class':'form-control'}),
            'Date':forms.DateInput(attrs={'class':'form-control'}),
            'time' :forms.TimeInput(attrs={'class':'form-control'}),
-           
+           'ID' :forms.TextInput(attrs={'class':'form-control'}),
+
         }
 
 

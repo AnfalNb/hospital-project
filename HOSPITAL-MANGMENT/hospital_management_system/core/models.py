@@ -61,5 +61,6 @@ class Appointment(models.Model):
     medical_field=models.CharField(max_length=30,null=True)
     Date=models.DateField(null=True)
     time=models.TimeField(null=True)
+    ID=models.CharField(max_length=20,null = True)
     class Meta:
         db_table = 'appointment'
