@@ -73,24 +73,3 @@ class messages(models.Model): #patient messages
 
 
 
-class WorkSchedule(models.Model):
-    calendar_id=models.AutoField(primary_key=True)
-    name_doc=models.CharField(max_length=225)
-    owner=models.ForeignKey(doctor_a, on_delete=models.CASCADE)
-    visible_for=models.ManyToManyField(doctor_a,related_name="visible_for")
-    editable_by=models.ManyToManyField(doctor_a,related_name="editable_by")
-
-    def __str__(self):
-        return self.name_doc
-
-class Event(models.Model):
-   
-    event_id=models.AutoField(primary_key=True)
-    calendar_id=models.ForeignKey(WorkSchedule, on_delete=models.CASCADE)
-    name_ev=models.CharField(max_length=225)
-    start_date=models.DateField()
-    end_date=models.DateField(null=True,blank=True)
-    event_type=models.CharField(max_length=2)
-    def __str__(self):
-        return self.name_ev
-

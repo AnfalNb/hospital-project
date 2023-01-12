@@ -122,17 +122,7 @@ def doctor_profile(request):
     return render(request,'doctor_profile.html')
 
 
-def   work_schedule(request):
-    context={}
-    if request.POST:
-        form=WorkScheduleForm(request.POST)
-        if form.is_valid():
-            WorkSchedule=form.save(commit=False)
-            WorkSchedule.owner=request.user.pk
-            work_schedule.save()
-    form=WorkScheduleForm()
-    context['form']=form        
-    return render(request, 'work_schedule.html')
+
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')

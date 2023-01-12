@@ -5,9 +5,6 @@ from .models import *
 admin.site.register(doctor_a) 
 admin.site.register(patient_a)
 admin.site.register(hospital_admin)
-admin.site.register(WorkSchedule)
-admin.site.register(Event)
-
 
 
 
