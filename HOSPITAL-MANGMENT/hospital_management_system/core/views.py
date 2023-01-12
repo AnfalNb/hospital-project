@@ -98,7 +98,7 @@ def login_Doctor(request):
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if doctor_a.objects.filter(DoctorID=doctor_id ,password_Doctor=dpctor_password).exists():
             # return render(request,'doctor_profile.html')
-            request.session['doctor_id'] = doctor_id
+            request.session['DoctorID'] = doctor_id
 
             return redirect('doctor_profile')
         else: 
@@ -138,7 +138,7 @@ def admin_profile(request):
     return render(request,'admin_profile.html')
 
 def doctor_profile(request):
-    doctor_id = request.session['doctor_id']
+    doctor_id = request.session['DoctorID']
     doctor = doctor_a.objects.get(DoctorID=doctor_id)
     return render(request, 'doctor_profile.html', {'doctor': doctor})
 
@@ -261,3 +261,18 @@ def delete_patient(request, id):
     obj =patient_a.objects.get(pk=id)
     obj.delete()
     return redirect('patientList')
+
+
+
+# def search_doctor(request):
+#     query = request.GET.get('q')
+#     results = doctor_a.objects.filter(First_name__contains=query)
+#     return render(request, 'search_results.html', {'results': results})
+
+def search_doctor(request):
+    query = request.GET.get('q')
+    if query is not None:
+        results = doctor_a.objects.filter(First_name__contains=query)
+        return render(request, 'search_result.html', {'results': results})
+    else:
+        return render(request, 'search_doctor.html')
