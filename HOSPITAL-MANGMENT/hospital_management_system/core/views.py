@@ -276,3 +276,12 @@ def search_doctor(request):
         return render(request, 'search_result.html', {'results': results})
     else:
         return render(request, 'search_doctor.html')
+
+#help function
+def help_logout_doctor(requst):
+    return render(requst,'doctor_logout.html')
+
+def logout_doctor(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('index')

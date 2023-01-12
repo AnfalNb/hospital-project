@@ -27,7 +27,8 @@ urlpatterns=[
     path('delete_doctor/<int:id>/',delete_doctor,name="delete_doctor"),
     path('delete_patient/<int:id>/',delete_patient,name="delete_patient"),
     path('search_doctor/',search_doctor,name="search_doctor"),
-
+    path('logout_doctor/', logout_doctor, name='logout_doctor'),
+    path('logout_doctor1/', help_logout_doctor, name='help_logout_doctor'),
     ]
 
 
