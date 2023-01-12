@@ -9,6 +9,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from django.views.generic import ListView
+from audioop import reverse
+from django.views.generic import TemplateView
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -122,7 +125,18 @@ def doctor_profile(request):
     return render(request,'doctor_profile.html')
 
 
+class test_blood(ListView):
+    model = TestBlood
+    template_name = 'test_blood.html'
 
+
+class test_blood_details(TemplateView):
+    template_name = 'test_blood_details.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['Blood'] = TestBlood.objects.get(pk=kwargs['test_number'])
+        return context   
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')

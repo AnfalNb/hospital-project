@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <title>test blood Details</title>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box}
+    /* Set a style for all buttons */
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+    button:hover {
+        opacity:1;
+    }
+    /* Add padding to container elements */
+    .container {
+      padding: 20px;
+    }
+    input{
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+    
+    /* Style the navigation bar links */
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    
+    
+    /* Right-aligned link */
+    .navbar a.right {
+      float: right;
+    }
+    
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Active/current link */
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+      
+</style>
+
+<div class="navbar">
+    <a href="{% url 'patient_homepage' %} " class="active">Home</a>
+    <a href="{% url 'index' %}" class="right">LOG OUT</a>
+  </div>
+
+<br>
+<br>
+
+<h1>Test Blood Details</h1>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">THE DATE TEST :</th>
+      <td>{{ Blood.date_test }}</td>
+    </tr>
+    <tr>
+      <th scope="row">LABORATORY FIELD:</th>
+      <td>{{ Blood.laboratory_field }}</td>
+    </tr>
+    <tr>
+      <th scope="row">REFERRING DOCTOR:</th>
+      <td>{{ Blood.referring_doctor }}</td>
+    </tr>
+    <tr>
+      <th scope="row">TEST Number:</th>
+      <td>{{ Blood.test_number }}</td>
+    </tr>
+    <tr>
+      <th scope="row">TEST NAME:</th>
+      <td>{{ Blood.name_test }}</td>
+    </tr>
+    <tr>
+      <th scope="row">RESULT:</th>
+      <td>{{ Blood.result }}</td>
+   
+
+      
+  </tbody>
+</table>

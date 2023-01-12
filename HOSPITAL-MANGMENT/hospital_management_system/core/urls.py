@@ -18,7 +18,8 @@ urlpatterns=[
     path('admin_profile/',admin_profile,name="admin_profile"),
     path('doctor_profile/',doctor_profile,name="doctor_profile"), 
     path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
-   
+    path('test_blood_details/<int:test_number>/', test_blood_details.as_view(), name='test_blood_details'),
+    path('test_blood/',test_blood.as_view(),name="test_blood"),
 
      ]
 

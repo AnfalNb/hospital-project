@@ -55,7 +55,18 @@ class messages(models.Model): #patient messages
 
 
 
+class TestBlood(models.Model):
+    date_test=models.DateField(null=True)
+    laboratory_field=models.CharField(max_length=30)
+    referring_doctor=models.CharField(max_length=30)
+    test_number=models.CharField(max_length=25,primary_key=True)
+    name_test=models.CharField(max_length=30)
+    result=models.CharField(max_length=30)
+    class Meta:
+        db_table = 'TestBlood'
 
+        def __str__(self):
+          return self.test_number
 
 
 
