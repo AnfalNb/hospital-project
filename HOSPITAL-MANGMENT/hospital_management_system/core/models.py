@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 # Create your models here.
 
 # python classes for database
@@ -19,7 +19,8 @@ class doctor_a(models.Model):
     class Meta:
         db_table = 'doctor_a'
 
-    
+    def __str__(self):
+          return str(self.First_name)
     
 class patient_a(models.Model):
     patientֹID=models.CharField(max_length=20,null = True)
@@ -66,10 +67,21 @@ class TestBlood(models.Model):
         db_table = 'TestBlood'
 
         def __str__(self):
-          return self.test_number
+          return str(self.test_number)
 
 
-
+class EVENT_CAL(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    doctor_name=models.ForeignKey(doctor_a, on_delete=models.CASCADE)
+    class Meta:
+        db_table = 'EVENT_CAL'
+    @property
+    def get_html_url(self):
+        re_path = reverse('event_edit', args=(self.id,))
+        return f'<a href="{re_path}"> {self.title} </a>'
 
 
 

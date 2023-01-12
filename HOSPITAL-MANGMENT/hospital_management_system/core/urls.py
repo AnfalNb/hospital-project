@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from django.urls import include, re_path
 urlpatterns=[
     path('',index,name='index') ,
     # path('patient_signup/',patient_signup),
@@ -20,6 +21,9 @@ urlpatterns=[
     path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
     path('test_blood_details/<int:test_number>/', test_blood_details.as_view(), name='test_blood_details'),
     path('test_blood/',test_blood.as_view(),name="test_blood"),
+    re_path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
+    re_path(r'^event/new/$', event, name='event_new'),
+    re_path(r'^event/edit/(?P<event_id>\d+)/$', event, name='event_edit'),
 
      ]
 
