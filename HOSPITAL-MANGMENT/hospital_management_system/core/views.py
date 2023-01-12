@@ -186,7 +186,17 @@ def event(request, event_id=None):
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('calendar'))
-    return render(request, 'event.html', {'form': form})        
+    return render(request, 'event.html', {'form': form})       
+
+
+#log out for patient
+def logout_patient_accepted(request):
+    return render(request,'logout_patient_accepted.html')
+
+def logout_patient(request):
+    logout(request)
+    # Redirect to a success page.
+    return redirect('index')
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')

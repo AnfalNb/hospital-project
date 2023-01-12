@@ -24,6 +24,8 @@ urlpatterns=[
     re_path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
     re_path(r'^event/new/$', event, name='event_new'),
     re_path(r'^event/edit/(?P<event_id>\d+)/$', event, name='event_edit'),
+    path('logout_patient/', logout_patient, name='logout_patient'),
+    path('logout_patient_accepted/', logout_patient_accepted, name='logout_patient_accepted'),
 
      ]
 
