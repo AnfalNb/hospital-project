@@ -86,4 +86,10 @@ class updateAppointmentForm(forms.ModelForm):
 
         
 
+class summrayForm(forms.ModelForm):
 
+    class Meta:
+         model=summary_a
+         fields= [
+             'patient_id','date','title','body'
+            ]

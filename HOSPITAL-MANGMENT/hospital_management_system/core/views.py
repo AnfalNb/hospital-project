@@ -305,3 +305,12 @@ def update_Appointment(request, Appointment_pk, p_id):
         form = updateAppointmentForm(instance=appoint)  # Create the form with the patient instance data
     return render(request, 'update_Appointment.html', {'form': form, 'Appointment': appoint})
 
+#----------------------summary--------------------------
+def send_summray(request):
+    form=summrayForm(request.POST )
+    if form.is_valid():
+            form.save()
+            return render(request, 'send_summary.html')
+
+    context={'form':form}
+    return render(request, 'send_summary.html',context)

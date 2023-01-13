@@ -28,7 +28,7 @@ urlpatterns=[
     path('appointmentList/<int:patient_id>',appointmentList,name="appointmentList"),
     path('error_page/', views.error_page, name='error_page'),
     path('delete_appointment/<int:id>/<int:p_id>/',delete_appointment,name="delete_appointment"),
-   
+   path('send_summray/',send_summray, name='send_summray'),
 
 
 
