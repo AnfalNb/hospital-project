@@ -20,3 +20,17 @@ class doctorform(forms.ModelForm):
             'DoctorID','First_name','Last_name','Phone_Number1','Address','Email_Address','Birth_Date','Medical_Field','File_Diploma','password_Doctor'
             ]
 
+#doctor updates orzalena
+class Doctor_updates(forms.ModelForm):
+    class Meta:
+        model=Doctor_updates
+        fields= [
+            'dr_name','date_hour_shift_finish'
+            ]
+
+class Message_form(forms.ModelForm):
+    class Meta:
+        model=messages
+        fields= [
+            'patientֹName', 'Email_Address', 'matter', 'doctorName', 'message'
+        ]

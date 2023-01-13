@@ -42,12 +42,20 @@ class hospital_admin(models.Model):
 
 class messages(models.Model): #patient messages
     patientֹName=models.CharField(max_length=20,null = True)
-    matter=models.CharField(max_length=10,null=True)
-    message=models.TextField(max_length=50,null=True)
     Email_Address=models.CharField(max_length=30,null=True)
-    
-
-
+    matter=models.CharField(max_length=10,null=True)
+    doctorName=models.CharField(max_length=100,null=True)
+    message=models.TextField(max_length=50,null=True)
 
     class Meta:
         db_table = 'messages'
+
+
+#doctor updates orzalena
+class Doctor_updates(models.Model):
+    dr_name=models.CharField(max_length=50,null=True)
+    date_hour_shift_finish=models.DateTimeField(null=False)
+    
+
+class Meta:
+    db_table ='doctor_updates'

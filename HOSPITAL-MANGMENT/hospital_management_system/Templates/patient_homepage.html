@@ -48,6 +48,19 @@ button {
   width: 100%;
   opacity: 0.9;
 }
+a{
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  width:100%;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  text-align: center;
+  display: inline-block;
+}
+
 
 button:hover {
   opacity:1;
@@ -98,12 +111,14 @@ button:hover {
       <button type="button" class=""> Medical summary viewing</button> 
     </div>
         <h1></h1>
+    <a id="ask" type="button" class="askbtn" href="{% url 'ask_doctor'%}">Ask a doctor</a>
+    <h1> </h1>
 
-        <div class="clearfix">
+<!--         <div class="clearfix">
     
           <button type="submit" class="">ask your doctor</button> </a>
-          <a href='AskDoctor.html'></a>
-        </div> 
+          <a href="{% url 'ask_doctor'%}"></a>
+        </div>  -->
 
     <div class="clearfix">
  
@@ -147,7 +162,6 @@ button:hover {
     </div>
         <h1></h1>
 
-   
   
 </form>
 

@@ -4,13 +4,16 @@ from .models import patient_a,doctor_a,hospital_admin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform
+from .forms import patientform,doctorform,Message_form
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
 from django.template import loader
+import logging
+from django.contrib import messages #import messages
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -113,11 +116,52 @@ def AdminLogin (request):
     else:
         return render(request, 'AdminLogin.html',{})
 
+# def getDoctorNames(request):
+#     names = doctor_a.objects.all()
+#     context = {
+#                 'result2': names,
+#             }
+#     template = loader.get_template('AskDoctor.html')
+#     return render(request, 'AskDoctor.html', context)
 
-def AskDoctor (requst):
-    return render(requst,'AskDoctor.html')    
+# def AskDoctor (request):
+#     names = doctor_a.objects.all()
+#     context = {
+#                 'result2': names,
+#             }
+#     template = loader.get_template('AskDoctor.html')
+#     return render(request, 'AskDoctor.html', context)
+#     # return render(request,'AskDoctor.html')
 
+def submitAskDoctor(request):
+     if request.method == 'POST':
+         form=doctorform(request.POST)
+         if form.is_valid():
+                 form.save()
+                 return render(request, 'index.html')
+         else:
+             return render(request, 'index.html')
+     else:
+         return render(request, 'index.html',{})
 
+def AskDoctor (request):
+    if request.method == 'POST':
+        form=Message_form(request.POST)
+        if form.is_valid():
+                form.save()
+                messages.success(request, "Message sent." )
+                return render(request, 'patient_homepage.html')
+        else:
+            messages.success(request, "Message sent." )
+            return render(request, 'patient_homepage.html')
+    else:
+        names = doctor_a.objects.all()
+        context = {
+                    'result2': names,
+                }
+        template = loader.get_template('AskDoctor.html')
+        return render(request, 'AskDoctor.html', context)
+        # return render(request,'AskDoctor.html')
 
 def logout_view(request):
     logout(request)
@@ -136,6 +180,11 @@ def logout_admin(request):
     messages.add_message(request, messages.SUCCESS, 
                              "successfully logged out")
     return redirect(render, 'logout_admin')
+
+#-----send updates to admin- not finished yet--
+def sendupdatestoadmin(request):
+    return render(request,'sendupdatestoadmin.html')
+
 #=============================================================================================================================
 # def Doctor_signup(requst):
 #     First_name=requst.POST.get('firstname')
@@ -201,4 +250,8 @@ def logout_admin(request):
 class patientList(ListView):
     model = patient_a
     template_name = 'patientList.html'
+
+class DoctorList(ListView):
+    model = doctor_a
+    template_name = 'AskDoctor.html'
 
