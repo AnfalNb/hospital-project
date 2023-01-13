@@ -314,3 +314,18 @@ def send_summray(request):
 
     context={'form':form}
     return render(request, 'send_summary.html',context)
+
+
+
+
+from django.views.generic import TemplateView
+
+class summry_views(TemplateView):
+    model=summary_a
+    template_name = 'summry_views.html'
+
+def view_summary(request, patient_id):
+    summ = summary_a.objects.get(patient_id=patient_id)
+    patient = patient_a.objects.get(pk=patient_id)
+
+    return render(request, 'summry_views.html', {'summ': summ,'patient': patient})

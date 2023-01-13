@@ -28,7 +28,10 @@ urlpatterns=[
     path('appointmentList/<int:patient_id>',appointmentList,name="appointmentList"),
     path('error_page/', views.error_page, name='error_page'),
     path('delete_appointment/<int:id>/<int:p_id>/',delete_appointment,name="delete_appointment"),
-   path('send_summray/',send_summray, name='send_summray'),
+    path('send_summray/',send_summray, name='send_summray'),
+    path('summry_views/',summry_views.as_view(), name='summry_views'),
+    path('summary/<int:patient_id>/', view_summary, name='view_summary'),
+
 
 
 
