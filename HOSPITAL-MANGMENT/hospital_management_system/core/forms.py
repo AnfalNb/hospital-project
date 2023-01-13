@@ -98,3 +98,32 @@ class doctorupdateform(forms.ModelForm):
 
 
         }
+
+class signuppatientform(forms.ModelForm):
+    class Meta:
+        model=patient_a
+        fields= [
+            'patientֹID','First_name','Last_name','Phone_Number','Address','Email_Address','Birth_Date','password_patientֹ'
+            ]
+        labels ={
+            'patientֹID' : 'ID' ,
+            'First_name': 'First name',
+            'Last_name':'Last name',
+            'Phone_Number':'Phone Number',
+            'Address':  'Address',
+           ' Email_Address': 'Email Address',
+            'Birth_Date':'Birth Date:',
+            'password_patientֹ': 'password',
+        }
+        widgets = {
+            'patientֹID' : forms.TextInput(attrs={'class':'form-control'}),
+            'First_name': forms.TextInput(attrs={'class':'form-control'}),
+            'Last_name':forms.TextInput(attrs={'class':'form-control'}),
+            'Phone_Number':forms.TextInput(attrs={'class':'form-control'}),
+            'Address': forms.TextInput(attrs={'class':'form-control'}),
+           ' Email_Address': forms.EmailInput(attrs={'class':'form-control'}),
+            'Birth_Date':forms.DateInput(attrs={'class':'form-control'}),
+            'password_patientֹ': forms.TextInput(attrs={'class':'form-control','type': "password"}),
+
+        }
+    

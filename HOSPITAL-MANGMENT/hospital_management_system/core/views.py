@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import doctorupdateform, patientform,doctorform
+from .forms import doctorupdateform, patientform,doctorform, signuppatientform
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView,UpdateView
@@ -22,11 +22,11 @@ def index(requst):
 
 
 def signup_patient(request):
-    form=patientform(request.POST or None)
+    form=signuppatientform(request.POST or None)
     print("requst here!!!")
     if form.is_valid():
             form.save()
-            return render(request, 'login_patient.html')
+            return redirect('login_patient')
 
     context={'form':form}
     return render(request, 'signup_patient.html',context)
@@ -44,7 +44,9 @@ def Doctor_signup(request):
     form=doctorform(request.POST )
     if form.is_valid():
             form.save()
-            return render(request, 'login_Doctor.html')
+            return redirect('login_Doctor')
+
+            # return render(request, 'login_Doctor.html')
 
     context={'form':form}
     return render(request, 'Doctor_signup.html',context)
