@@ -82,7 +82,9 @@ class EVENT_CAL(models.Model):
     def get_html_url(self):
         re_path = reverse('event_edit', args=(self.id,))
         return f'<a href="{re_path}"> {self.title} </a>'
-
+    
+    def __str__(self):
+          return str(self.title)
 
 
 
