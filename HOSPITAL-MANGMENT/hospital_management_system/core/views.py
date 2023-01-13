@@ -1,15 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a,hospital_admin,Appointment
+from .models import patient_a,doctor_a,hospital_admin,patientAppointment,summary_a
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform,AppointmentForm
+from .forms import patientform,doctorform,AppointmentForm,updateAppointmentForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
+from .forms import summrayForm
 
 # import django.contrib.auth as auth
 # Create your views here.
@@ -46,30 +47,116 @@ def Doctor_signup(request):
     context={'form':form}
     return render(request, 'Doctor_signup.html',context)
 
-def login_patient(request):
 
+def login_patient(request):
     if request.method == 'POST':
-        p_id=request.POST['p_id']
-        p_password=request.POST['p_password']
-        print(p_id,p_password)
-        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
-        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
-        if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
-            return render(request,'patient_homepage.html')
-           #return redirect('patient_homepage')
+        p_id = request.POST['p_id']
+        p_password = request.POST['p_password']
+        # Check if the provided ID and password match a patient in the database
+        if patient_a.objects.filter(patientֹID=p_id, password_patientֹ=p_password).exists():
+            # Store the patient's ID in the session data
+            request.session['patient_id'] = p_id
+            # Redirect to the patient's homepage
+            return redirect('patient_homepage')
         else: 
+            messages.error(request, 'Invalid patient ID or password')
             return redirect('login_patient')
     else:
-        return render(request, 'login_patient.html',{})
-
-
-
-
-
+        return render(request, 'login_patient.html', {})
 
 def patient_homepage(request):
-     return render(request,'patient_homepage.html')
+    # Get the patient's ID from the session data
+    patient_id = request.session['patient_id']
+    print(patient_id)
+    patient = patient_a.objects.get(patientֹID=patient_id)
+    print(patient)
+    return render(request, 'patient_homepage.html', {'patient': patient})
+
+
+# def login_patient(request):
+
+#     if request.method == 'POST':
+#         p_id=request.POST['p_id']
+#         p_password=request.POST['p_password']
+#         print(p_id,p_password)
+#         #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
+#         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+#         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
+#         if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
+#             request.session['patientID'] = p_id
+
+#             # return render(request,'patient_homepage.html')
+#             return redirect('patient_homepage')
+#         else: 
+#             return redirect('login_patient')
+#     else:
+#         return render(request, 'login_patient.html',{})
+
+
+
+       
+# def login_patient(request):
+#     if request.method == 'POST':
+#         p_id = request.POST['p_id']
+#         p_password = request.POST['p_password']
+#         # Check if the provided ID and password match a patient in the database
+#         if patient_a.objects.filter(patientID=p_id, password_patient=p_password).exists():
+#             # Store the patient's ID in the session data
+#             request.session['patient_'] = p_id
+#             # Redirect to the patient's homepage
+#             return redirect('patient_homepage')
+#         else: 
+#             messages.error(request, 'Invalid patient ID or password')
+#             return redirect('login_patient')
+#     else:
+#         return render(request, 'login_patient.html', {})
+
+# def patient_homepage(request):
+#     # Get the patient's ID from the session data
+#     patient_id = request.session['patient_id']
+#     # Retrieve the patient's data from the database
+#     patient = patient_a.objects.get(patient_ID=patient_id)
+#     # Render the profile page with the patient's data
+#     return render(request, 'patient_homepage.html', {'patient': patient})
+# def login_patient(request):
+
+#     if request.method == 'POST':
+#         p_id=request.POST['p_id']
+#         p_password=request.POST['p_password']
+#         print(p_id,p_password)
+#         #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
+#         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
+#         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
+#         if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
+#             # return render(request,'patient_homepage.html')
+#             request.session['patient_id'] = p_id
+#             return redirect('patient_homepage')
+#         else: 
+#             messages.error(request, 'Invalid patient ID or password')
+
+#             return redirect('login_patient')
+#     else:
+#         return render(request, 'login_patient.html',{})
+
+
+# def patient_homepage(request):
+#     # Get the patient's ID from the session data
+#     patient_id = request.session['patient_id']
+#     # Retrieve the patient's data from the database
+#     patient = patient_a.objects.get(patientֹID=patient_id)
+#     # Render the profile page with the patient's data
+#     return render(request, 'patient_homepage.html', {'patient': patient})
+
+
+# def patient_homepage(request):
+#     # Get the patient's ID from the session data
+#     patient_id = request.session['patientID']
+#     # Retrieve the patient's data from the database
+#     patient = patient_a.objects.get(patientֹID=patient_id)
+#     # Render the profile page with the patient's data
+#     return render(request, 'patient_homepage.html', {'patient': patient})
+# def patient_homepage(request):
+#      return render(request,'patient_homepage.html')
 
 
 
@@ -154,66 +241,67 @@ class patientList(ListView):
 
 
 
+# class appointmentList(ListView):
+#     model = patientAppointment
+#     template_name = 'appointment_list.html'
+
+from django.shortcuts import  get_object_or_404
+
+def appointmentList(request, patient_id):
+   # retrieve all appointments for the patient
+    patient_appointments = patientAppointment.objects.filter(patient=patient_id)
+    patient = patient_a.objects.get(pk=patient_id)
+
+    context = {'appointments': patient_appointments,'patient':patient}
+    return render(request, 'appointment_list.html', context)
+
+# #---------------------------------------------------------------------------------
 
 
- 
-
-
-
-
-   
-
-
-
-# def appointment_list(request):
-#     if request.method == 'POST':
-#         form = AppointmentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#     else:
-#         form = AppointmentForm()
-#     appointments = Appointment.objects.all()
-#     return render(request, 'appointment_list.html', {'form': form, 'appointments': appointments})
-
-
-
-class appointmentList(ListView):
-    model = Appointment
-    template_name = 'appointment_list.html'
-
-
-
-#---------------------------------------------------------------------------------
-
-
-def add_appointments(request):
+def add_appointments(request,p_id):
     form=AppointmentForm(request.POST)
     if form.is_valid():
             form.save()
-            return redirect('appointmentList')
+            return redirect('appointmentList',p_id)
 
     context={'form':form}
     return render(request, 'add_appointments.html',context)
 
 
-def delete_appointment(request, id):
-    obj =Appointment.objects.get(pk=id)
+# def delete_appointment(request, id):
+#     obj =patientAppointment.objects.get(pk=id)
+#     obj.delete()
+#     return redirect('appointmentList')
+def error_page(request):
+    return render(request, 'error.html')
+
+# def delete_appointment(request, id,p_id):
+#     try:
+#         obj =patientAppointment.objects.get(pk=id)
+#         print(obj)
+#         obj.delete()
+#     except patientAppointment.DoesNotExist:
+#         return redirect('error_page')
+#     return redirect('appointmentList', patient_id=p_id)
+
+def delete_appointment(request, id,p_id):
+    obj =patientAppointment.objects.get(pk=id)
     obj.delete()
-    return redirect('appointmentList')
+    return redirect('appointmentList',p_id)
 
 
-
-def update_Appointment(request, Appointment_pk):
+def update_Appointment(request, Appointment_pk, p_id):
     try:
-        appoint = Appointment.objects.get(pk=Appointment_pk)  # Retrieve the patient instance from the database
-    except Appointment.DoesNotExist:
+        appoint = patientAppointment.objects.get(pk=Appointment_pk)  # Retrieve the patient instance from the database
+    except patientAppointment.DoesNotExist:
         # handle the error
         return redirect('error_page')
     if request.method == 'POST':
-        form = AppointmentForm(request.POST, instance=appoint)  # Pass the patient instance to the form
+        form = updateAppointmentForm(request.POST, instance=appoint)  # Pass the patient instance to the form
         if form.is_valid():
             form.save()  # Save the form to update the patient instance in the database
-            return redirect('appointmentList')  # Redirect to the homepage after the update is successful
+            return redirect('appointmentList' ,p_id)  # Redirect to the homepage after the update is successful
     else:
-        form = AppointmentForm(instance=appoint)  # Create the form with the patient instance data
+        form = updateAppointmentForm(instance=appoint)  # Create the form with the patient instance data
     return render(request, 'update_Appointment.html', {'form': form, 'Appointment': appoint})
+

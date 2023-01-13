@@ -76,7 +76,7 @@
 
 <div class="navbar">
     <a href="{% url 'patient_homepage'%} " class="active">Home</a>
-    <a href="#" class="right">Log out</a>
+    <a href="{% url 'login_patient'%}" class="right">Log out</a>
   </div>
 
 <br>
@@ -89,7 +89,9 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
-        <a href="{% url 'appointmentList' %}" class="button"><button>Cancel</button></a>
+        <button type="submit">cancel</button>
+
+
     </div>
 </form>
 <br>

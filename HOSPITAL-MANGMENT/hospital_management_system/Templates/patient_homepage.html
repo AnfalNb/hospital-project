@@ -93,8 +93,8 @@ button:hover {
     <hr>
 
 	<div class="clearfix">
-   
-      <button type="button" class=""> Medical summary viewing</button> 
+    <a href="{% url 'summry_views'  patient.pk %}">
+      <button type="button" class=""> Medical summary viewing</button></a> 
     </div>
         <h1></h1>
 
@@ -129,7 +129,8 @@ button:hover {
 
 
      <div class="clearfix">
-      <button type="button" class=""><a href="{% url 'appointmentList' %}"> My appointments</a></button> 
+      <a href="{% url 'appointmentList'  patient.pk %}">
+      <button type="button" class=""> My appointments</button> </a>
     </div>
         <h1></h1>
 

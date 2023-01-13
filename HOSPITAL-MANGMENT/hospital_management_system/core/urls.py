@@ -20,15 +20,19 @@ urlpatterns=[
     path('admin_profile/',admin_profile,name="admin_profile"),
     path('doctor_profile/',doctor_profile,name="doctor_profile"), 
     path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
-    path('patientList/',patientList.as_view(),name="patientList"), 
-    path('appointmentList/',appointmentList.as_view(),name="appointmentList"), 
-    path('add_appointments/',views.add_appointments, name='add_appointments'),
-    path('delete_appointment/<int:id>/',delete_appointment,name="delete_appointment"),
-    path('update_Appointment/<int:Appointment_pk>/',update_Appointment,name="update_Appointment"),]
+    # path('patientList/',patientList.as_view(),name="patientList"), 
+    # path('appointmentList/',appointmentList.as_view(),name="appointmentList"), 
+    path('add_appointments/<int:p_id>',views.add_appointments, name='add_appointments'),
+    # path('delete_appointment/<int:id>/<int:patient_id>/',delete_appointment,name="delete_appointment"),
+    path('update_Appointment/<int:Appointment_pk>/<int:p_id>',update_Appointment,name="update_Appointment"),
+    path('appointmentList/<int:patient_id>',appointmentList,name="appointmentList"),
+    path('error_page/', views.error_page, name='error_page'),
+    path('delete_appointment/<int:id>/<int:p_id>/',delete_appointment,name="delete_appointment"),
+   
 
 
 
-
+]
 
 
 

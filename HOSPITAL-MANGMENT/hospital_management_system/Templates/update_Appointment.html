@@ -74,14 +74,13 @@
 
 <br>
 <br>
-<form action="{% url 'update_Appointment' Appointment.pk %}" method="post" style="border:1px solid #ccc ; width: 75%; margin: auto">
+<form action="#" method="post" style="border:1px solid #ccc ; width: 75%; margin: auto">
     <div class="container">
         <h1>Update Appointment Information</h1>
         <hr>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Update</button>
-        <a href="{% url 'appointmentList' %}" class="button"><button>Cancel</button></a>
     </div>
 </form>
 <br>

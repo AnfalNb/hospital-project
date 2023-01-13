@@ -22,7 +22,7 @@ class doctor_a(models.Model):
     
     
 class patient_a(models.Model):
-    patientֹID=models.CharField(max_length=20,null = True)
+    patientֹID=models.CharField(max_length=20,primary_key=True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number=models.CharField(max_length=10,null=True)
@@ -56,11 +56,30 @@ class hospital_admin(models.Model):
 # CharField
 
 
-class Appointment(models.Model):
+# class Appointment(models.Model):
+#     DoctorName=models.CharField(max_length=30,null=True)
+#     medical_field=models.CharField(max_length=30,null=True)
+#     Date=models.DateField(null=True)
+#     time=models.TimeField(null=True)
+#     patientid = models.CharField(max_length=30,null=True)
+#     class Meta:
+#         db_table = 'Appointment'
+
+
+class patientAppointment(models.Model):
     DoctorName=models.CharField(max_length=30,null=True)
     medical_field=models.CharField(max_length=30,null=True)
     Date=models.DateField(null=True)
     time=models.TimeField(null=True)
-    ID=models.CharField(max_length=20,null = True)
+    patient = models.CharField(max_length=30,null=True)
     class Meta:
-        db_table = 'appointment'
+        db_table = 'patientAppointment'
+
+
+class summary_a(models.Model):
+    patient_id=models.CharField(max_length=30,null=True)
+    date=models.DateField(null=True)
+    title=models.CharField(max_length=30,null=True)
+    body=models.TextField(max_length=300,null=True)
+    class Meta():
+        db_table='summary_a'

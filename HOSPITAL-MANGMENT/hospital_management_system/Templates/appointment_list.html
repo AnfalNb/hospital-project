@@ -218,7 +218,9 @@ h1 {
 
 
  <h1>Appointments list</h1>
- <button class="button button1"><a href="{% url 'add_appointments' %}" style="color:dodgerblue">Scheduling Appointments</a></button>
+
+ {{patient.pk}}
+ <button class="button button1"><a href="{% url 'add_appointments' patient.pk%}" style="color:dodgerblue">Scheduling Appointments</a></button>
 
 
       <table class='table' style="  width: 85%; ">
@@ -226,7 +228,7 @@ h1 {
           <thead>
             <tr>
               <th style="width:5%">No.</th>
-              <th>ID</th>
+              <!-- <th>ID</th> -->
               <th>Doctor Name</th>
               <th>medical_field</th>
               <th>Date</th>
@@ -241,33 +243,26 @@ h1 {
           
   
   
-          {% for Appointment in object_list %}
+          {% for appointment in appointments %}
           <tr>
             <td>{{ forloop.counter }}</td>
-            <td>{{ ID }}</td>
-            <td>{{ Appointment.DoctorName }}</td>
-            <td>{{ Appointment.medical_field }}</td>
-            <td>{{ Appointment.Date }}</td>
-            <td>{{ Appointment.time }}</td>
+            <!-- <td>{{ ID }}</td> -->
+            <td>{{ appointment.DoctorName }}</td>
+            <td>{{ appointment.medical_field }}</td>
+            <td>{{ appointment.Date }}</td>
+            <td>{{ appointment.time }}</td>
             <td style="width:5%">
-              <a href="{% url 'update_Appointment' Appointment.pk %}"> update</a></td>
-            <td style="width:5%">
-              <button onclick="return confirmDelete()">Delete</button>
+              <a href="{% url 'update_Appointment' appointment.pk patient.pk %}"> update</a></td>
 
-            <script>
-             function confirmDelete() {
-               if (confirm("Are you sure you want to delete this doctor?")) {
-                 // call Django view to delete object
-                 window.location.href = "{% url 'delete_appointment' Appointment.pk %}";
-               }
-            return false;
-        }
-        </script>
-          </tr> 
+              <td style="width:5%">
+                <a href="{% url 'delete_appointment' appointment.pk patient.pk %}">
+                  <button>Delete</button>
+              </a>
+            </tr> 
         {% endfor %}
         
   
       </table>
-
+     
 </body>
 </html>

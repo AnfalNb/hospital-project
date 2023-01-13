@@ -1,0 +1,20 @@
+{% if appointments %}
+    <table>
+    <tr>
+        <th>Doctor Name</th>
+        <th>Medical Field</th>
+        <th>Date</th>
+        <th>Time</th>
+    </tr>
+    {% for appointment in appointments %}
+    <tr>
+        <td>{{ appointment.DoctorName }}</td>
+        <td>{{ appointment.medical_field }}</td>
+        <td>{{ appointment.Date }}</td>
+        <td>{{ appointment.time }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>There are no appointments for this patient.</p>
+{% endif %}
