@@ -329,3 +329,15 @@ def view_summary(request, patient_id):
     patient = patient_a.objects.get(pk=patient_id)
 
     return render(request, 'summry_views.html', {'summ': summ,'patient': patient})
+
+
+    #---------------------------------------------------------------------------------
+
+import datetime
+def patienttListinDoctor(request):
+   # retrieve all appointments for the patient
+    today_appointments = patientAppointment.objects.filter(Date =  datetime.datetime.now())
+    # patient = patient_a.objects.get(pk=patient_id)
+
+    context = {'appointments': today_appointments}
+    return render(request, 'patienttListinDoctor.html', context)

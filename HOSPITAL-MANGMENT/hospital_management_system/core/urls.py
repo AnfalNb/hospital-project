@@ -31,7 +31,7 @@ urlpatterns=[
     path('send_summray/',send_summray, name='send_summray'),
     path('summry_views/',summry_views.as_view(), name='summry_views'),
     path('summary/<int:patient_id>/', view_summary, name='view_summary'),
-
+    path('patienttListinDoctor/',patienttListinDoctor, name='patienttListinDoctor'),
 
 
 

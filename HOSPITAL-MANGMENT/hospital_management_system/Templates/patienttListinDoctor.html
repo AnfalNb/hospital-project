@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -212,15 +211,14 @@ h1 {
 
 </div>
 <div class="navbar">
-  <a href="{% url 'patient_homepage' %}" class="active">Home</a>
-  <a href="{% url 'login_patient' %}" class="right">Logout</a>
+  <a href="{% url 'doctor_profile' %}" class="active">Home</a>
+  <a href="{% url 'login_Doctor' %}" class="right">Logout</a>
 </div>
 
 
- <h1>Appointments list</h1>
+ <h1>Patient list</h1>
 
- <!-- {{patient.pk}} -->
- <button class="button button1"><a href="{% url 'add_appointments' patient.pk%}" style="color:dodgerblue">Scheduling Appointments</a></button>
+ {{patient.pk}}
 
 
       <table class='table' style="  width: 85%; ">
@@ -229,12 +227,11 @@ h1 {
             <tr>
               <th style="width:5%">No.</th>
               <!-- <th>ID</th> -->
-              <th>Doctor Name</th>
+              <th>Patient Name</th>
               <th>medical_field</th>
               <th>Date</th>
               <th>time</th>
-              <th>update</th>
-              <th>delete</th>
+             
 
               <!-- <th></th>
               <th>AMOUNT</th> -->
@@ -251,14 +248,7 @@ h1 {
             <td>{{ appointment.medical_field }}</td>
             <td>{{ appointment.Date }}</td>
             <td>{{ appointment.time }}</td>
-            <td style="width:5%">
-              <a href="{% url 'update_Appointment' appointment.pk patient.pk %}"> update</a></td>
-
-              <td style="width:5%">
-                <a href="{% url 'delete_appointment' appointment.pk patient.pk %}">
-                  <button>Delete</button>
-              </a>
-            </tr> 
+         
         {% endfor %}
         
   
