@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <title>Doctor Details</title>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box}
+    /* Set a style for all buttons */
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+    button:hover {
+        opacity:1;
+    }
+    /* Add padding to container elements */
+    .container {
+      padding: 20px;
+    }
+    input{
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+    
+    /* Style the navigation bar links */
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    
+    
+    /* Right-aligned link */
+    .navbar a.right {
+      float: right;
+    }
+    
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Active/current link */
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+      
+</style>
+
+<div class="navbar">
+    <a href="{% url 'admin_profile'%} " class="active">Home</a>
+    <a href="#" class="right">LOG OUT</a>
+  </div>
+
+<br>
+<br>
+
+<h1>Doctor Details</h1>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">ID</th>
+      <td>{{ Doctor.DoctorID }}</td>
+    </tr>
+    <tr>
+      <th scope="row">First Name</th>
+      <td>{{ Doctor.First_name }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Last Name</th>
+      <td>{{ Doctor.Last_name }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Phone Number</th>
+      <td>{{ Doctor.Phone_Number1 }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Address</th>
+      <td>{{ Doctor.Address }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Email Address</th>
+      <td>{{ Doctor.Email_Address }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Birth Date</th>
+      <td>{{ Doctor.Birth_Date }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Medical Field</th>
+      <td>{{ Doctor.Medical_Field }}</td>
+    </tr>
+    <tr>
+        <th scope="row">File Diploma</th>
+        <td>
+            <a href="{{ Doctor.File_Diploma.url }}" download="{{ Doctor.File_Diploma.name }}">Download {{ Doctor.File_Diploma.name }}</a>
+        </td>
+      </tr>
+
+      
+  </tbody>
+</table>
+

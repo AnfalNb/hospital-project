@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Viewing a medical summary</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  .table th, .table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  .table th {
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+    
+    /* Style the navigation bar links */
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    
+    
+    /* Right-aligned link */
+    .navbar a.right {
+      float: right;
+    }
+    
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Active/current link */
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+</style>
+</head>
+<body>
+
+<div class="header">
+
+</div>
+<div class="navbar">
+  <a href="{% url 'patient_homepage' %}" class="active">Home</a>
+  <a href="{% url 'login_patient' %}" class="right">Logout</a>
+</div>
+
+ <h1>Viewing a medical summary</h1>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Name</th>
+      <td>{{ patient.First_name }} {{ patient.Last_name }}</td>
+    </tr>
+    <!-- <tr>
+      <th scope="row">ID</th>
+      <td>{{ patient.patientID }} </td>
+    </tr> -->
+    <tr>
+      <th scope="row">Date</th>
+      <td>{{ summ.date }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Title</th>
+      <td>{{ summ.title }}</td>
+    </tr>
+  <tr>
+      <th scope="row">Body</th>
+      <td>{{ summ.body }}</td>
+    </tr>
+
+
+</body>
+</html>

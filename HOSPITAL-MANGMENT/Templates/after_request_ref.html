@@ -1,0 +1,58 @@
+<style>
+    /* Form styles */
+form {
+  display: flex; /* Display the form as a flex container */
+  flex-direction: column; /* Stack the form elements vertically */
+  align-items: center; /* Center the form elements horizontally */
+  text-align: center; /* Center the text */
+}
+
+/* Button styles */
+.btn {
+  padding: 12px 24px; /* Add padding to the buttons */
+  border: none; /* Remove the border of the buttons */
+  border-radius: 4px; /* Add rounded corners to the buttons */
+  cursor: pointer; /* Add a pointer cursor on hover */
+  color: white; /* Set the text color to white */
+  font-weight: bold; /* Bold the text */
+  text-transform: uppercase; /* Capitalize the text */
+  transition: background-color 0.2s ease-in-out; /* Add a transition to the background color on hover */
+}
+
+/* Add a hover effect for the buttons */
+.btn:hover {
+  background-color: #45a049;
+}
+
+/* Primary button style */
+.btn-primary {
+  background-color: #4CAF50; /* Set the background color to green */
+}
+
+/* Anchor tag styles */
+a {
+  text-decoration: none; /* Remove the underline from the anchor tags */
+  color: inherit; /* Inherit the text color of the parent element */
+}
+.navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+    
+</style>
+<div class="navbar">
+    <a href="{% url 'referral' patient.pk %} " class="active">Home</a>
+  </div>
+<form method="post" action="">
+    {% csrf_token %}
+      <h1>Please, you have to wait for the doctor's answer</h1><br>
+      
+ </form

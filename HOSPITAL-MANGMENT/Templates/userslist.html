@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Sansation&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="{% url 'admin_profile'%} " class="active">Home</a>
+    <a href="#" class="right">LOG OUT</a>
+</div>
+
+
+    <div class="v1811_193">
+        <div class="name"></div><span class="v1815_126">USRES LIST</span>
+        <a href="{% url 'patientList' %}">
+        <div class="v1806_157"></div><span class="v1806_179">PATIENTS LIST</span>
+      </a>
+        <a href="{% url 'doctorList' %}">
+        <div class="v1811_188"></div><span class="v1811_189">DOCTORS LIST</span>
+        </a>
+    </div>
+</body>
+
+</html> <br /><br />
+<style>
+
+.navbar {
+        overflow: hidden;
+        background-color: #333;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+    }
+
+    /* Style the navigation bar links */
+    .navbar a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 30px;
+        text-decoration: none;
+    }
+
+
+    /* Right-aligned link */
+    .navbar a.right {
+        float: right;
+    }
+
+    /* Change color on hover */
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Active/current link */
+    .navbar a.active {
+        background-color: #666;
+        color: white;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .v1811_193 {
+        width: 100%;
+        height: 849px;
+        background: url("../images/v1811_193.png");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        opacity: 1;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        overflow: hidden;
+    }
+
+    .name {
+        color: #fff;
+    }
+
+    .v1815_126 {
+        width: 428px;
+        color: rgb(0, 0, 0);
+        position: absolute;
+        top: 40px;
+        left: 517px;
+        font-family: Sansation;
+        font-weight: Regular;
+        font-size: 90px;
+        opacity: 1;
+        text-align: center;
+    }
+
+    .v1806_157 {
+        width: 494px;
+        height: 311px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: absolute;
+        top: 269px;
+        left: 123px;
+        border-top-left-radius: 64px;
+        border-top-right-radius: 64px;
+        border-bottom-left-radius: 64px;
+        border-bottom-right-radius: 64px;
+        box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+    }
+
+    .v1806_179 {
+        width: 470px;
+        color: rgb(0, 0, 0);
+        position: absolute;
+        top: 350px;
+        left: 136px;
+        font-family: Sansation;
+        font-weight: Regular;
+        font-size: 96px;
+        opacity: 1;
+        text-align: center;
+    }
+
+    .v1811_188 {
+        width: 494px;
+        height: 311px;
+        background: rgba(255, 255, 255, 1);
+        opacity: 1;
+        position: absolute;
+        top: 269px;
+        left: 865px;
+        border-top-left-radius: 64px;
+        border-top-right-radius: 64px;
+        border-bottom-left-radius: 64px;
+        border-bottom-right-radius: 64px;
+        box-shadow: -1px 4px 15px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+    }
+
+    .v1811_189 {
+        width: 470px;
+        color: rgb(0, 0, 0);
+        position: absolute;
+        top: 350px;
+        left: 877px;
+        font-family: Sansation;
+        font-weight: Regular;
+        font-size: 96px;
+        opacity: 1;
+        text-align: center;
+    }
+</style>

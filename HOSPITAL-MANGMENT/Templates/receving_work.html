@@ -1,0 +1,118 @@
+<style>
+
+    /* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+    .navbar {
+      overflow: hidden;
+      background-color: #333;
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+    }
+    
+    /* Style the navigation bar links */
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    
+    
+    /* Right-aligned link */
+    .navbar a.right {
+      float: right;
+    }
+    
+    /* Change color on hover */
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    /* Active/current link */
+    .navbar a.active {
+      background-color: #666;
+      color: white;
+    }
+    
+    </style>
+    
+    <div class="navbar">
+      <a href="{% url 'index'%} " class="active">Home</a>
+      
+      <a href="#" class="right">LOG OUT</a>
+    </div>
+    
+    
+    <head>
+    
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            margin: auto;
+            width: 50%;
+            border: 3px solid green;
+            padding: 10px;
+    
+        }
+    
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    
+    </head>
+    
+    <div class="header">
+      <br>
+      <h1> work schedule </h1>
+      <br>
+    </div>
+    
+        <table class='table' style="  width: 85%; ">
+      
+            <thead>
+              <tr>
+                <th style="width:5%">No.</th>
+                <th>title </th>
+                <th>description</th>
+                <th>start time </th>
+                <th>end time </th>
+
+                
+              </tr>
+            </thead>
+            
+    
+    
+            {% for receiving in  receiving %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ receiving.title }}</td>
+              <td>{{ receiving.description}}</td>
+              <td>{{ receiving.start_time }}</td>
+              <td>{{ receiving.end_time }}</td>
+
+
+              
+              
+             
+            </tr> 
+          {% endfor %}
+          
+    
+        </table>
+
+
+
