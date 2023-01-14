@@ -5,7 +5,7 @@ from django.urls import reverse
 # python classes for database
 class doctor_a(models.Model):
     DoctorID=models.CharField(max_length=20,null = True)
-    First_name=models.CharField(max_length=20,null = True)
+    First_name=models.CharField(max_length=20,primary_key=True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number1=models.CharField(max_length=20, null=True)
     Address=models.CharField(max_length=50,null=True)

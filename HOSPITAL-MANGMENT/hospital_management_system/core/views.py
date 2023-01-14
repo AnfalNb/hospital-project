@@ -222,3 +222,9 @@ def referrals_renewing(request,instance_id):
 class renwe_ref(ListView):
     model = MedicalReferral
     template_name = 'renwe_ref.html'
+
+
+def receving_work(request, doctor_name):
+    receiving = EVENT_CAL.objects.filter(doctor_name=doctor_name)
+    doctor = doctor_a.objects.get(pk =doctor_name)
+    return render(request, 'receving_work.html', {'receiving': receiving, 'doctor':doctor})    
