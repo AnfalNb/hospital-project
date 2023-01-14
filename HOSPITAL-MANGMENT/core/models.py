@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.db import models
 
 # Create your models here.
@@ -88,6 +89,8 @@ class TestBlood(models.Model):
           return str(self.test_number)
 
 
+from django.urls import reverse
+
 class EVENT_CAL(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -96,13 +99,15 @@ class EVENT_CAL(models.Model):
     doctor_name=models.CharField(max_length=200)
     class Meta:
         db_table = 'EVENT_CAL'
+
     @property
     def get_html_url(self):
         re_path = reverse('event_edit', args=(self.id,))
         return f'<a href="{re_path}"> {self.title} </a>'
-    
+
     def __str__(self):
           return str(self.title)
+
 
 
 class MedicalReferral(models.Model):
