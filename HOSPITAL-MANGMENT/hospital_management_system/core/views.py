@@ -116,22 +116,7 @@ def AdminLogin (request):
     else:
         return render(request, 'AdminLogin.html',{})
 
-# def getDoctorNames(request):
-#     names = doctor_a.objects.all()
-#     context = {
-#                 'result2': names,
-#             }
-#     template = loader.get_template('AskDoctor.html')
-#     return render(request, 'AskDoctor.html', context)
 
-# def AskDoctor (request):
-#     names = doctor_a.objects.all()
-#     context = {
-#                 'result2': names,
-#             }
-#     template = loader.get_template('AskDoctor.html')
-#     return render(request, 'AskDoctor.html', context)
-#     # return render(request,'AskDoctor.html')
 
 def submitAskDoctor(request):
      if request.method == 'POST':
@@ -143,6 +128,8 @@ def submitAskDoctor(request):
              return render(request, 'index.html')
      else:
          return render(request, 'index.html',{})
+
+
 
 def AskDoctor (request):
     if request.method == 'POST':
@@ -163,14 +150,18 @@ def AskDoctor (request):
         return render(request, 'AskDoctor.html', context)
         # return render(request,'AskDoctor.html')
 
+
 def logout_view(request):
     logout(request)
     return redirect(request,index)
 
 
+
 def admin_profile(request):
     return render(request,'admin_profile.html')
-    
+
+
+
 def doctor_profile(request):
     return render(request,'doctor_profile.html')
 
@@ -181,9 +172,25 @@ def logout_admin(request):
                              "successfully logged out")
     return redirect(render, 'logout_admin')
 
+
 #-----send updates to admin- not finished yet--
 def sendupdatestoadmin(request):
-    return render(request,'sendupdatestoadmin.html')
+    return redirect(render,'sendupdatestoadmin.html')
+
+def AnswerUrPatient(request):
+    return redirect(render, 'AnswerUrPatient')
+
+
+class patientList(ListView):
+    model = patient_a
+    template_name = 'patientList.html'
+
+class DoctorList(ListView):
+    model = doctor_a
+    template_name = 'AskDoctor.html'
+
+
+
 
 #=============================================================================================================================
 # def Doctor_signup(requst):
@@ -247,11 +254,5 @@ def sendupdatestoadmin(request):
 #    return render(request, 'login_patient.html',{})
 
 
-class patientList(ListView):
-    model = patient_a
-    template_name = 'patientList.html'
 
-class DoctorList(ListView):
-    model = doctor_a
-    template_name = 'AskDoctor.html'
 

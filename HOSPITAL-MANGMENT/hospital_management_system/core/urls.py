@@ -22,4 +22,6 @@ urlpatterns=[
     path('logout_admin/',logout_admin, name="logout_admin"), #admin logout
     path('sendupdatestoadmin/',sendupdatestoadmin,name="sendupdatestoadmin"),#doctor updates orzalena
     path('askDoctor/', AskDoctor, name="ask_doctor"),
+    path('answerUrPatient/', AnswerUrPatient, name="AnswerUrPatient"),
+    
 ]
