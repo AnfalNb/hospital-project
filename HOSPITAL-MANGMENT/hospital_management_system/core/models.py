@@ -23,7 +23,7 @@ class doctor_a(models.Model):
           return str(self.First_name)
     
 class patient_a(models.Model):
-    patientֹID=models.CharField(max_length=20,null = True)
+    patientֹID=models.CharField(max_length=20,primary_key=True)
     First_name=models.CharField(max_length=20,null = True)
     Last_name=models.CharField(max_length=20,null = True)
     Phone_Number=models.CharField(max_length=10,null=True)
@@ -75,7 +75,7 @@ class EVENT_CAL(models.Model):
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    doctor_name=models.ForeignKey(doctor_a, on_delete=models.CASCADE)
+    doctor_name=models.CharField(max_length=200)
     class Meta:
         db_table = 'EVENT_CAL'
     @property
@@ -87,6 +87,17 @@ class EVENT_CAL(models.Model):
           return str(self.title)
 
 
+class MedicalReferral(models.Model):
+    name_referral = models.CharField(max_length=200)
+    start_time = models.DateField()
+    end_time = models.DateField()
+    patient_id=models.CharField(max_length=10)
+
+    class Meta:
+        db_table = 'MedicalReferral' 
+
+    def __str__(self):
+          return str(self.patient_id)
 
 
 

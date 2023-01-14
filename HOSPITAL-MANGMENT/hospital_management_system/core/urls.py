@@ -26,7 +26,18 @@ urlpatterns=[
     re_path(r'^event/edit/(?P<event_id>\d+)/$', event, name='event_edit'),
     path('logout_patient/', logout_patient, name='logout_patient'),
     path('logout_patient_accepted/', logout_patient_accepted, name='logout_patient_accepted'),
+    # path('receving_work/<str:doctor_name>/',receving_work.as_view(),name="receving_work"),
+    path('referrals_renewing/<instance_id>', referrals_renewing, name='referrals_renewing'),
+    path('referral/<int:patient_id>/',referral,name="referral"),
+    path('after_request_ref/<int:patient_id>/',after_request_ref,name="after_request_ref"),
+    path('renwe_ref/',renwe_ref.as_view(),name="renwe_ref"),
 
+
+    
+
+
+
+    
      ]
 
 
