@@ -127,8 +127,8 @@ def AdminLogin (request):
         #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
         #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
         if hospital_admin.objects.filter(username=Admin_username ,password=Admin_password ).exists():
-            return render(request,'admin_profile.html')
-           #return redirect('patient_homepage')
+            # return render(request,'admin_profile.html')
+            return redirect('admin_profile')
         else: 
             return redirect('AdminLogin')
     else:
@@ -328,7 +328,9 @@ def view_summary(request, patient_id):
 import datetime
 def patienttListinDoctor(request):
    # retrieve all appointments for the patient
-    today_appointments = patientAppointment.objects.filter(Date =  datetime.datetime.now())
+    doctor_id = request.session['DoctorID']
+    doctor = doctor_a.objects.get(DoctorID=doctor_id)
+    today_appointments = patientAppointment.objects.filter(Date =  datetime.datetime.now(),DoctorName =doctor.First_name)
     # patient = patient_a.objects.get(pk=patient_id)
 
     context = {'appointments': today_appointments}
@@ -411,8 +413,10 @@ def referral(request, patient_id):
     return render(request, 'referral.html', {'refs': refs, 'patient':patient})
 
 
+def after_request_ref(request,patient_id,refpk):
+    ref = MedicalReferral.objects.filter(patient_id=patient_id,pk=refpk).update(renewed=1) 
 
-def after_request_ref(request,patient_id):
+    # print(str(ref.renewed))
     patient = patient_a.objects.get(patientֹID = patient_id)
     return render(request,'after_request_ref.html', { 'patient':patient})  
 
@@ -424,9 +428,16 @@ def referrals_renewing(request,instance_id):
     instance.save()
     return redirect('renwe_ref')
 
-class renwe_ref(ListView):
-    model = MedicalReferral
-    template_name = 'renwe_ref.html'
+# class renwe_ref(ListView):
+#     model = MedicalReferral
+#     template_name = 'renwe_ref.html'
+
+def renwe_ref(request):
+    doctor_id = request.session['DoctorID']
+    doctor = doctor_a.objects.get(DoctorID=doctor_id)
+    new_referral = MedicalReferral.objects.filter(doctor_name=doctor.First_name,renewed=1)
+    # doctor = doctor_a.objects.get(pk =doctor_name)
+    return render(request, 'renwe_ref.html', {'new_referral': new_referral })
 
 
 def receving_work(request, doctor_name):

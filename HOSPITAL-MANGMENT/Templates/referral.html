@@ -105,7 +105,7 @@
                     <td>{{ ref.end_time }}</td>
                     <td>{{ ref.patient_id }}</td>
                     <td>
-                        <a href="{% url 'after_request_ref' ref.patient_id  %}"><button>Renewal request </button></a>
+                        <a href="{% url 'after_request_ref' ref.patient_id ref.pk  %}"><button>Renewal request </button></a>
                     </td>
                 </tr>
             {% endfor %}

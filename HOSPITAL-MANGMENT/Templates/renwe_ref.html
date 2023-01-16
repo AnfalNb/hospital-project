@@ -93,19 +93,23 @@
                 <th>START TIME</th>
                 <th>END TIME </th>
                 <th>PATIENT ID </th>
+                <th style="width:5%"> doctor  </th>
+
                 <th style="width:5%"> Renewal  </th>
             </tr>
         </thead>
         <tbody>
-            {% for MedicalReferral in object_list %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ MedicalReferral.name_referral }}</td>
-                    <td>{{ MedicalReferral.start_time}}</td>
-                    <td>{{ MedicalReferral.end_time }}</td>
-                    <td>{{ MedicalReferral.patient_id }}</td>
+          {% for new_referral in new_referral  %}
+          <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ new_referral.name_referral }}</td>
+              <td>{{ new_referral.start_time}}</td>
+              <td>{{ new_referral.end_time }}</td>
+              <td>{{ new_referral.patient_id }}</td>
+              <td>{{ new_referral.doctor_name }}</td>
+
                     <td>
-                        <a href="{% url 'referrals_renewing' MedicalReferral.pk  %}"><button>Renewal </button></a>
+                        <a href="{% url 'referrals_renewing' new_referral.pk  %}"><button>Renewal </button></a>
                     </td>
                 </tr>
             {% endfor %}

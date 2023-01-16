@@ -74,6 +74,7 @@ button:hover {
 <body>
 
 <form method =  "POST" action="" style="border:1px solid #ccc">
+  {% csrf_token %}
   <div class="container">
     <h1>Welcome {{doctor.First_name}} !</h1>
   

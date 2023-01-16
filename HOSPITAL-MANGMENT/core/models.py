@@ -115,6 +115,8 @@ class MedicalReferral(models.Model):
     start_time = models.DateField()
     end_time = models.DateField()
     patient_id=models.CharField(max_length=10)
+    doctor_name=models.CharField(max_length=200)
+    renewed = models.CharField(max_length = 1)
 
     class Meta:
         db_table = 'MedicalReferral' 

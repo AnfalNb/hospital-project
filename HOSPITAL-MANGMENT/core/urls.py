@@ -44,8 +44,10 @@ urlpatterns=[
     path('receving_work/<str:doctor_name>/',receving_work,name="receving_work"),
     path('referrals_renewing/<instance_id>', referrals_renewing, name='referrals_renewing'),
     path('referral/<int:patient_id>/',referral,name="referral"),
-    path('after_request_ref/<int:patient_id>/',after_request_ref,name="after_request_ref"),
-    path('renwe_ref/',renwe_ref.as_view(),name="renwe_ref"),
+    path('after_request_ref/<int:patient_id>/<int:refpk>/',after_request_ref,name="after_request_ref"),
+    # path('renwe_ref/',renwe_ref.as_view(),name="renwe_ref"),
+    path('renwe_ref/',renwe_ref,name="renwe_ref"),
+
     ]
 
 

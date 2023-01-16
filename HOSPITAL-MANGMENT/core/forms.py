@@ -41,33 +41,33 @@ class doctorform(forms.ModelForm):
         fields= [
             'DoctorID','First_name','Last_name','Phone_Number1','Address','Email_Address','Birth_Date','Medical_Field','File_Diploma','password_Doctor'
             ]
-        labels ={
-            'DoctorID' : 'ID' ,
-            'First_name': 'First name',
-            'Last_name':'Last name',
-            'Phone_Number1':'Phone Number',
-            'Address':  'Address',
-           ' Email_Address': 'Email Address',
-            'Birth_Date':'Birth Date:',
-            'Medical_Field' : 'Medical_Field',
-            'File_Diploma' : 'File Diploma',
-            'password_Doctor': 'password',
-        }
-        widgets = {
-            'DoctorID' : forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),
-            'First_name': forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
-            'Last_name':forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
-            'Phone_Number1':forms.TextInput(attrs={'class':'form-control'}),
-            'Address': forms.TextInput(attrs={'class':'form-control'}),
-           ' Email_Address': forms.EmailInput(attrs={'class':'form-control'}),
-            'Birth_Date':forms.DateInput(attrs={'class':'form-control','readonly':'readonly'}),
-            'Medical_Field': forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
-            'File_Diploma': forms.FileInput(attrs={'class':'form-control'}),
+        # labels ={
+        #     'DoctorID' : 'ID' ,
+        #     'First_name': 'First name',
+        #     'Last_name':'Last name',
+        #     'Phone_Number1':'Phone Number',
+        #     'Address':  'Address',
+        #    ' Email_Address': 'Email Address',
+        #     'Birth_Date':'Birth Date:',
+        #     'Medical_Field' : 'Medical_Field',
+        #     'File_Diploma' : 'File Diploma',
+        #     'password_Doctor': 'password',
+        # }
+        # widgets = {
+        #     'DoctorID' : forms.TextInput(attrs={'class':'form-control', 'readonly':'readonly'}),
+        #     'First_name': forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
+        #     'Last_name':forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
+        #     'Phone_Number1':forms.TextInput(attrs={'class':'form-control'}),
+        #     'Address': forms.TextInput(attrs={'class':'form-control'}),
+        #    ' Email_Address': forms.EmailInput(attrs={'class':'form-control'}),
+        #     'Birth_Date':forms.DateInput(attrs={'class':'form-control','readonly':'readonly'}),
+        #     'Medical_Field': forms.TextInput(attrs={'class':'form-control','readonly':'readonly'}),
+        #     'File_Diploma': forms.FileInput(attrs={'class':'form-control'}),
 
-            'password_Doctor': forms.TextInput(attrs={'class':'form-control','type': "password"}),
+        #     'password_Doctor': forms.TextInput(attrs={'class':'form-control','type': "password"}),
 
 
-        }
+        # }
 
 class doctorupdateform(forms.ModelForm):
     class Meta:
