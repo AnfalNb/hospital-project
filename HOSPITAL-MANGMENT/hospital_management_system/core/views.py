@@ -51,20 +51,18 @@ def Doctor_signup(request):
 
 def login_patient(request):
 
-    if request.method == 'POST':
-        p_id=request.POST['p_id']
-        p_password=request.POST['p_password']
-        print(p_id,p_password)
-        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
-        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
-        if patient_a.objects.filter(patientֹID=p_id ,password_patientֹ=p_password ).exists():
-            return render(request,'patient_homepage.html')
-           #return redirect('patient_homepage')
-        else: 
-            return redirect('login_patient')
+    if request.method == "POST":
+        p_id = request.POST["p_id"]
+        p_password = request.POST["p_password"]
+        user = patient_a.objects.filter(patientID=p_id).first()
+        if user is not None and user.password == p_password:
+            request.session["user_id"] = user.id
+            request.session["user_type"] = "patient"
+            return render(request, "patient_homepage.html")
+        else:
+            return redirect("login_patient")
     else:
-        return render(request, 'login_patient.html',{})
+        return render(request, "login_patient.html", {})
 
 
 
@@ -77,44 +75,36 @@ def patient_homepage(request):
 
 
 def login_Doctor(request):
-    if request.method == 'POST':
-        doctor_id=request.POST['doc_id']
-        dpctor_password=request.POST['doc_password']
-        print(doctor_id,dpctor_password)
-        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
-        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
-        if doctor_a.objects.filter(DoctorID=doctor_id ,password_Doctor=dpctor_password).exists():
-            return render(request,'doctor_profile.html')
-           #return redirect('patient_homepage')
-        else: 
-            return redirect('login_Doctor')
+    if request.method == "POST":
+        doctor_id = request.POST["doc_id"]
+        dpctor_password = request.POST["doc_password"]
+        user = doctor_a.objects.filter(DoctorID=doctor_id).first()
+        if user is not None and user.password == dpctor_password:
+            request.session["user_id"] = user.id
+            request.session["user_type"] = "doctor"
+            return render(request, "doctor_profile.html")
+        else:
+            return redirect("login_Doctor")
     else:
-        return render(request, 'login_Doctor.html',{})
+        return render(request, "login_Doctor.html", {})
 
 
 def AdminLogin (request):
-    if request.method == 'POST':
-        Admin_username=request.POST['username']
-        Admin_password=request.POST['password']
-        print(Admin_username,Admin_password)
-        #patient_user = get_object_or_404(patient_a,patientֹID=p_id,password_patientֹ=p_password)
-        #patient_user = patient_a.objects.get(patientֹID=p_id,password_patientֹ=p_password)
-        #p_user=patient_a.objects.get(patientֹID=p_id ,password_patientֹ=p_password ).exists()
-        if hospital_admin.objects.filter(username=Admin_username ,password=Admin_password ).exists():
-            # context = {
-            #     'result': "disappear",
-            # }
-            return render(request,'admin_profile.html')
-           #return redirect('patient_homepage')
-        else: 
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = hospital_admin.objects.filter(username=username).first()
+        if user is not None and user.password == password:
+            request.session["user_id"] = user.id
+            request.session["user_type"] = "admin"
+            return render(request, "admin_profile.html")
+        else:
             context = {
-                'result': "Username or password is not correct",
+                "result": "Username or password is not correct",
             }
-            template = loader.get_template('AdminLogin.html')
-            return HttpResponse(template.render(context, request))
+            return render(request, "AdminLogin.html", context)
     else:
-        return render(request, 'AdminLogin.html',{})
+        return render(request, "AdminLogin.html", {})
 
 
 
@@ -132,28 +122,27 @@ def submitAskDoctor(request):
 
 
 def AskDoctor (request):
-    if request.method == 'POST':
-        form=Message_form(request.POST)
+    if request.method == "POST":
+        form = Message_form(request.POST)
         if form.is_valid():
-                form.save()
-                messages.success(request, "Message sent." )
-                return render(request, 'patient_homepage.html')
-        else:
-            messages.success(request, "Message sent." )
-            return render(request, 'patient_homepage.html')
-    else:
-        names = doctor_a.objects.all()
-        context = {
-                    'result2': names,
-                }
-        template = loader.get_template('AskDoctor.html')
-        return render(request, 'AskDoctor.html', context)
+            message = form.save()
+            message.doctorID = request.POST.get("doctorName", None)
+            message.patientID = request.session.get("user_id", None)
+            message.save()
+            messages.success(request, "Message sent.")
+            return render(request, "patient_homepage.html")
+    names = doctor_a.objects.all()
+    context = {
+        "result2": names,
+    }
+    template = loader.get_template("AskDoctor.html")
+    return render(request, "AskDoctor.html", context)
         # return render(request,'AskDoctor.html')
 
 
 def logout_view(request):
-    logout(request)
-    return redirect(request,index)
+    request.session["user_id"] = None
+    return redirect("/")
 
 
 
