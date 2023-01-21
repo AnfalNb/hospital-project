@@ -25,7 +25,7 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
+button, .btn {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
@@ -34,9 +34,11 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  display: block;
+  text-align: center;
 }
 
-button:hover {
+button:hover, .btn:hover {
   opacity:1;
 }
 
@@ -84,6 +86,12 @@ button:hover {
     </div>
         <h1></h1>
 
+        <div class="clearfix">
+          <a href="{% url 'reply_patients' %}" class="btn">
+            Patient Questions
+          </a>
+        </div>
+        <h1></h1>
   <div class="clearfix">
       <button type="button" class="">Viewing a list of patients</button> 
     </div>

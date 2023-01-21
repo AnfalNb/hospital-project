@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a,hospital_admin
+from .models import patient_a,doctor_a,hospital_admin, doctor_reply
+from .models import messages as message_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
@@ -124,6 +125,7 @@ def submitAskDoctor(request):
 def AskDoctor (request):
     if request.method == "POST":
         form = Message_form(request.POST)
+        print(form.errors)
         if form.is_valid():
             message = form.save()
             message.doctorID = request.POST.get("doctorName", None)
@@ -139,6 +141,46 @@ def AskDoctor (request):
     return render(request, "AskDoctor.html", context)
         # return render(request,'AskDoctor.html')
 
+def reply_patients(request):
+    user_id = request.session["user_id"]
+    type = request.session["user_type"]
+    user = None
+    if type == "doctor":
+        user = doctor_a.objects.get(id=user_id)
+    questions = message_model.objects.filter(doctorID = user.id)
+    print(questions)
+    context = {
+      "user": user,
+      "questions": questions,
+    }
+    return render(request, "AnswerUrPatient.html", context)
+
+def reply_patient(request, pk):
+    question = message_model.objects.get(pk = pk)
+    if request.method == "POST":
+        doctor_reply.objects.create(
+          message=question,
+          answer=request.POST.get("answer", None)
+        )
+        return redirect("reply_patients")
+    context = {
+      "question": question,
+    }
+    return render(request, "reply_patient.html", context)
+
+
+def patient_messages(request):
+    user_id = request.session["user_id"]
+    type = request.session["user_type"]
+    user = None
+    if type == "patient":
+        user = doctor_a.objects.get(id=user_id)
+    answers = doctor_reply.objects.filter(message__patientID = user.id)
+    context = {
+      "user": user,
+      "answers": answers,
+    }
+    return render(request, "patient_messages.html", context)
 
 def logout_view(request):
     request.session["user_id"] = None

@@ -23,5 +23,7 @@ urlpatterns=[
     path('sendupdatestoadmin/',sendupdatestoadmin,name="sendupdatestoadmin"),#doctor updates orzalena
     path('askDoctor/', AskDoctor, name="ask_doctor"),
     path('answerUrPatient/', AnswerUrPatient, name="AnswerUrPatient"),
-    
+    path("reply_patients/", reply_patients, name="reply_patients"),
+    path("reply_patient/<int:pk>/", reply_patient, name="reply_patient"),
+         path("patient_messages/", patient_messages, name="patient_messages"),
 ]

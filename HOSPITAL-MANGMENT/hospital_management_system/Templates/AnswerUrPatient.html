@@ -24,38 +24,35 @@ tr:nth-child(even) {
 <h2>Patients' questions</h2>
 
 <table>
-  <tr>
-     <th>
-     <th>Patient's name</th>
-        <th>contact: Email/ Phone number</th>
-        <th>Age</th>
-        <th>matter</th>
-        <th>options</th>
-  </tr>
-  <tr>
-    <td>Orza</td>
-    <td>orzalel@gmail.com</td>
-    <td>21</td>
-    <td>Hi dr. sam, I have pain in my left hand.. may u tell me what should I do?</td>
-    <td> </td>
-    <td><button class="editbtn">answer</button></td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-        <td>eve908@gmail.com</td>
-        <td>31</td>
-        <td>Hi dr. sam, I have pain in my left hand.. may u tell me what should I do?</td>
-        <td> </td>
-        <td><button class="editbtn">answer</button></td>
-  </tr>
-  <tr>
-    <td>Adam</td>
-    <td>adam208@gmail.com</td>
-    <td>19</td>
-    <td>Hi dr. sam, I have pain in my left hand.. may u tell me what should I do?</td>
-    <td> </td>
-    <td><button class="editbtn">answer</button></td>
-  </tr> 
+ 
+  <thead>
+    <tr>
+      <th style="width:5%">No.</th>
+      <th><h4>Patient</h4></th>
+      <th>Patient Email</th>
+      <th>Matter </th>
+      <th>Message</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  {%for question in questions %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+
+      <td>{{question.patientName}}</td>
+      <td>{{question.Email_Address}}</td>
+      <td>{{question.matter}}</td>            
+      <td>{{question.message}}</td>
+      <td>
+        <a href="{% url 'reply_patient' pk=question.id %}">
+          Reply
+        </a>
+      </td>
+
+    </tr> 
+  {% endfor %}
+
 </table>
 
 </body>
