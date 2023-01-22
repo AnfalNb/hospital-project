@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+
+<style>
+
+
+
+</style>
+
+ <table class="table">
+  
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th><h4>patient id</h4></th>
+            <th>first name</th>
+            <th>last name </th>
+            <th>message</th>
+
+            <!-- <th></th>
+            <th>AMOUNT</th> -->
+          </tr>
+        </thead>
+        
+        {%for doctorName in object_list%}
+          <tr>
+            <td>{{forloop.counter}}</td>
+
+            <td>{{patient_a.First_name}}</td>
+            <td>{{patient_a.Last_name}}</td>
+            <td>{{patient_a.id}}</td>            
+            <td>{{patient_a.message}}</td>
+
+          </tr> 
+        {% endfor %}
+
+    </table>
+
+
+</html>

@@ -48,6 +48,19 @@ button {
   width: 100%;
   opacity: 0.9;
 }
+a{
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  width:100%;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+  text-align: center;
+  display: inline-block;
+}
+
 
 button:hover {
   opacity:1;
@@ -103,35 +116,28 @@ button:hover {
       <button type="button" class="">Sending a question to the doctor</button> 
     </div>
         <h1></h1>
+    <a id="ask" type="button" class="askbtn" href="{% url 'ask_doctor'%}">Ask a doctor</a>
+  
+      <a id="ask" type="button" class="askbtn" href="{% url 'patient_messages'%}">Dsoctor's Replies</a>
+
+<!--         <div class="clearfix">
+    
+          <button type="submit" class="">ask your doctor</button> </a>
+          <a href="{% url 'ask_doctor'%}"></a>
+        </div>  -->
 
     <div class="clearfix">
-      <a href="{% url 'search_doctor' %}">
-      <button type="button" class="">search a doctor</button> </a>
+ 
+      <button type="button" class="">search a doctor</button> 
     </div>
         <h1></h1>
 
 
     <div class="clearfix">
-      <a href="{% url 'referral' patient.pk  %}"> 
-      <button type="button" class="">viewing medical referrals and renewing</button> </a>
+    
+      <button type="button" class="">viewing medical referrals and renewing</button> 
     </div>
         <h1></h1>
-
-
-
-    <div class="clearfix">
-    <a href="{% url 'test_blood'%}"> 
-      <button type="button" class="">Watching blood tests
- </button></a>
-    </div>
-        <h1></h1>
-
-
-        <div class="clearfix">
-          <a href="{% url 'appointmentList'  patient.pk %}">
-          <button type="button" class=""> My appointments</button> </a>
-        </div>
-            <h1></h1>
 
 
 
@@ -142,12 +148,14 @@ button:hover {
         <h1></h1>
 
     <div class="clearfix">
-      <a href="{% url 'logout_patient_accepted' %}">
-      <button type="button" class="">Log out</button> </a>
+      <a href="/">
+
+        <button type="button" class="">Log out</button> 
+      </a>
     </div>
         <h1></h1>
 
-   
+  
 </form>
 
 </body>

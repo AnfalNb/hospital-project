@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>contact your doctor</title>
+    <title>reply to patient</title>
 </head>
 
 <body>
@@ -172,55 +172,26 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
 <div class="fcf-body">
 
     <div id="fcf-form">
-    <h3 class="fcf-h3">here you can write your question:)</h3>
+    <h3 class="fcf-h3">Here you can write your answer</h3>
 
     <form id="fcf-form-id" class="fcf-form-class" method="post" action="">
         {% csrf_token %}
         <div class="fcf-form-group">
-            <label for="Name" class="fcf-label">Your name:</label>
-            <div class="fcf-input-group">
-                <input type="text" id="Name" name="patientName" class="fcf-form-control" required>
-            </div>
-        </div>
-        <div class="fcf-form-group">
-            <label for="Email" class="fcf-label">Your email address:</label>
-            <div class="fcf-input-group">
-                <input type="email" id="Email" name="Email_Address" class="fcf-form-control" required>
-            </div>
-        </div>
-            <div class="fcf-form-group">
-                <label for="matter" class="fcf-label">matter:</label>
-                <div class="fcf-input-group">
-                    <input type="text" id="matter" name="matter" class="fcf-form-control" required>
-                </div>
-                <div class="container">
-                  </div>
-                  <label>Doctor and medical field: </label>
-                <select name="doctorName">
-                    <option></option>
-                    {%for obj in result2%}
-                        <option value="{{obj.id}}"><b>{{obj.First_name}} {{obj.Last_name}}, Medical Field: {{obj.Medical_Field}}</b></option>
-                    {% endfor %}
-                </select>
-            </div>   
-        <div class="fcf-form-group">
             <label for="Message" class="fcf-label">Your message:</label>
             <div class="fcf-input-group">
-                <textarea id="Message" name="message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                <textarea id="Message" name="answer" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
             </div>
         </div>
 
         <div class="fcf-form-group">
-            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
+            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Submit</button>
         </div>
-
         <div class="fcf-form-group">
-            <a href='/patient-homepag'>
+            <a href='/doctor_profile'>
                 <button type="button" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">return to your profile</button>
 
             </a>
         </div>
-
     </form>
     </div>
 

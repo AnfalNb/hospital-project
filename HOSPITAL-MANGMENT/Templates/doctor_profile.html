@@ -25,7 +25,7 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
+button, .btn {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
@@ -34,9 +34,11 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  display: block;
+  text-align: center;
 }
 
-button:hover {
+button:hover, .btn:hover {
   opacity:1;
 }
 
@@ -74,32 +76,36 @@ button:hover {
 <body>
 
 <form method =  "POST" action="" style="border:1px solid #ccc">
-  {% csrf_token %}
   <div class="container">
-    <h1>Welcome {{doctor.First_name}} !</h1>
+    <h1>DOCTOR PROFILE</h1>
   
     <hr>
 
   <div class="clearfix">
-    <a href="{% url 'receving_work'  doctor.First_name  %}">
-      <button type="button" class=""> Work schedule</button></a>
+      <button type="button" class=""> Work schedule</button>
     </div>
         <h1></h1>
 
         <div class="clearfix">
-          <a href="{% url 'patienttListinDoctor' %}">
-            <button type="button" class="">Viewing a list of patients</button> </a>
-          </div>
-              <h1></h1>
-
-    <div class="clearfix">
-    <a href="{% url 'renwe_ref'    %}">
-
-      <button type="button" class="">Approval or rejection of referral renewal</button> </a>
+          <a href="{% url 'reply_patients' %}" class="btn">
+            Patient Questions
+          </a>
+        </div>
+        <h1></h1>
+  <div class="clearfix">
+      <button type="button" class="">Viewing a list of patients</button> 
     </div>
         <h1></h1>
 
-      
+    <div class="clearfix">
+      <button type="button" class="">Approval or rejection of referral renewal</button> 
+    </div>
+        <h1></h1>
+
+        <div class="clearfix">
+      <button type="button" class="">Viewing blood tests</button> 
+    </div>
+        <h1></h1>
 
          <div class="clearfix">
       <button type="button" class="">Viewing and renewing references</button> 
@@ -107,39 +113,39 @@ button:hover {
         <h1></h1>
 
          <div class="clearfix">
-      <button type="button" class="">Viewing the patient's condition</button> 
+          <a href="/patientList">
+
+            <button type="button" class="">Viewing the patient's information</button> 
+          </a>
     </div>
         <h1></h1>
 
         <div class="clearfix">
-          <a href="{% url 'send_summray' %}">
-        <button type="button" class="">Medical summary for the patient</button> </a>
-      </div>
-          <h1></h1>
-
-        <div class="clearfix">
-      <button type="button" class="">Sending an answer to the patient's question</button> 
+      <button type="button" class="">Medical summary for the patient</button> 
     </div>
         <h1></h1>
-
-       <div class="clearfix">
-      <button type="button" class="">Sending updates to admin</button> 
-    </div>
-        <h1></h1>
-
         <div class="clearfix">
-          <a href="{% url 'update_doctor' doctor.pk %}">
-      <button type="button" class="">Update details</button> </a>
-    </div>
-        <h1></h1>
-
-
-
-        <div class="clearfix">
-          <a href="{% url 'help_logout_doctor' %}">
-          <button type="button" class="">Log out</button> </a>
+          <a href="{% url 'shift_updates' %}" class="btn">
+            Sending updates to admin
+          </a>
         </div>
-            <h1></h1>
+       
+        <h1></h1>
+
+        <div class="clearfix">
+      <button type="button" class="">Update details</button> 
+    </div>
+        <h1></h1>
+
+
+
+    <div class="clearfix">
+      <a href="/">
+
+        <button type="button" class="">Log out</button> 
+      </a>
+    </div>
+        <h1></h1>
 
    
   

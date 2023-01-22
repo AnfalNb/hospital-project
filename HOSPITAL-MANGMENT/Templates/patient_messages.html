@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html>
+
+<style>
+
+/* Sticky navbar - toggles between relative and fixed, depending on the scroll position. It is positioned relative until a given offset position is met in the viewport - then it "sticks" in place (like position:fixed). The sticky value is not supported in IE or Edge 15 and earlier versions. However, for these versions the navbar will inherit default position */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Active/current link */
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+
+/*lazem add urls*/
+</style>
+
+<div class="navbar">
+  <a href="/patient-homepag" class="active">Home</a>
+</div>
+
+
+<head>
+
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+.table {
+  border: 1px solid black;/*the frame taba3 altable*/
+
+  font-size: 20px;
+  text-align: center;
+  width: 85%;
+  margin: auto;
+  text-align: center;
+}
+
+/*Make alternating colors for the table rows*/
+.table tr:nth-child(odd){
+  background: #67ccb8
+}
+/*background: #1abc9c*/
+.table tr:nth-child(even){
+  background: #dae5f4
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* Header/logo Title 
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+}*/
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+  font-family: 'Times New Roman', serif;
+
+}
+
+</style>
+
+ <table class="table">
+  
+        <thead>
+          <tr>
+            <th style="width:5%">No.</th>
+            <th>Matter</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        
+        {%for answer in answers %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+
+            <td>{{answer.message.matter}}</td>
+            <td>{{answer.answer}}</td>
+          </tr> 
+        {% endfor %}
+
+    </table>
+
+
+</html>
