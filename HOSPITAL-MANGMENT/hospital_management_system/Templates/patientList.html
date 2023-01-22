@@ -40,10 +40,7 @@
 /*lazem add urls*/
 </style>
 <div class="navbar">
-  <a href="#" class="active">Home</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" class="right">Link</a>
+  <a href="#" class="active" onclick="javascript:history.back()">Home</a>
 </div>
 
 
@@ -101,11 +98,12 @@ tr:nth-child(even) {
 
 <div class="header">
   <br>
-  <h1>Patient List</h1>
+  <h1>Patient Information</h1>
   <br>
 </div>
 
     <div>
+      <span>ENter patient's id, name or email</span>
       <form action=".">
         <input type="text" name="query" value="{{ request.GET.query }}" />
         <button type="submit">Filter</button>

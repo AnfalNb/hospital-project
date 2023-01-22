@@ -16,6 +16,7 @@ from django.template import loader
 import logging
 from django.contrib import messages #import messages
 import datetime
+from django.db.models import Q
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -247,7 +248,20 @@ def admin_shift_updates(request):
 
 class patientList(ListView):
     model = patient_a
-    template_name = 'patientList.html'
+    template_name = "patientList.html"
+    
+    def get_queryset(self):
+        query = self.request.GET.get("query", None)
+        queryset = super().get_queryset()
+        if query:
+            queryset = queryset.filter(
+              Q(First_name__icontains = query) |
+              Q(patientID__icontains = query) |
+              Q(Last_name__icontains = query) |
+              Q(Email_Address__icontains = query)
+            )
+        return queryset
+
 
 class DoctorList(ListView):
     model = doctor_a
