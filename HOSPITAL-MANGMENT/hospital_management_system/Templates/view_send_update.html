@@ -40,10 +40,7 @@
 /*lazem add urls*/
 </style>
 <div class="navbar">
-  <a href="#" class="active">Home</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" class="right">Link</a>
+  <a href="/admin_profile" class="active">Home</a>
 </div>
 
 
@@ -101,51 +98,27 @@ tr:nth-child(even) {
 
 <div class="header">
   <br>
-  <h1>Patient List</h1>
+  <h1>Doctor's Shift Update</h1>
   <br>
 </div>
-
-    <div>
-      <form action=".">
-        <input type="text" name="query" value="{{ request.GET.query }}" />
-        <button type="submit">Filter</button>
-      </form>
-    </div>
 
     <table class='table'>
   
         <thead>
           <tr>
             <th style="width:5%">No.</th>
-            <th>patient id</th>
-            <th>first name</th>
-            <th>last name </th>
-            <th>phone</th>
-            <th>email</th>
-            {% if request.session.user_type == "admin" %}
-              <th>Delete</th>
-            {% endif %}
+            <th>Doctor</th>
+            <th>Reason</th>
+            <th>Time</th>
           </tr>
         </thead>
 
-        {%for patient_a in object_list%}
+        {%for shift_update in shift_updates %}
           <tr>
             <td>{{forloop.counter}}</td>
-            <td>{{patient_a.patientID}}</td>
-            <td>{{patient_a.First_name}}</td>
-            <td>{{patient_a.Last_name}}</td>
-            <td>{{patient_a.Phone_Number}}</td>
-            <td>{{patient_a.Email_Address}}</td>
-            {% if request.session.user_type == "admin" %}
-              <td>
-                <form action="{% url 'delete_patient' pk=patient_a.pk %}" method="POST">
-                  {% csrf_token %}
-                  <button type="submit" class="btn">
-                    Delete
-                  </button>
-                </form>
-              </td>
-            {% endif %}
+            <td>{{shift_update.doctor.First_name}} {{shift_update.doctor.Last_name}}</td>
+            <td>{{shift_update.reason}}</td>
+            <td>{{shift_update.time}}</td>
           </tr>
         {% endfor %}
 

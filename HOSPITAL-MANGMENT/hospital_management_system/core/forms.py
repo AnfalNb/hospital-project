@@ -36,6 +36,10 @@ class doctorform(forms.ModelForm):
             "password",
         ]
  
+class doctor_shift_update_form(forms.ModelForm):
+    class Meta:
+        model = doctor_shift_update
+        fields = ["reason"]
 
 class Message_form(forms.ModelForm):
     class Meta:

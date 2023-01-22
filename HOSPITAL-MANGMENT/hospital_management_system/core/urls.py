@@ -20,10 +20,12 @@ urlpatterns=[
     path('update-patient/<str:pk>p',update_patient,name="update_patient"), 
     path('patientList/',patientList.as_view(),name="patientList"), 
     path('logout_admin/',logout_admin, name="logout_admin"), #admin logout
-    path('sendupdatestoadmin/',sendupdatestoadmin,name="sendupdatestoadmin"),#doctor updates orzalena
+    # path('sendupdatestoadmin/',sendupdatestoadmin,name="sendupdatestoadmin"),#doctor updates orzalena
     path('askDoctor/', AskDoctor, name="ask_doctor"),
-    path('answerUrPatient/', AnswerUrPatient, name="AnswerUrPatient"),
+    # path('answerUrPatient/', AnswerUrPatient, name="AnswerUrPatient"),
     path("reply_patients/", reply_patients, name="reply_patients"),
     path("reply_patient/<int:pk>/", reply_patient, name="reply_patient"),
-         path("patient_messages/", patient_messages, name="patient_messages"),
+    path("patient_messages/", patient_messages, name="patient_messages"),
+    path("shift_updates/", shift_updates, name="shift_updates"),      
+         path("admin_shift_updates/", admin_shift_updates, name="admin_shift_updates"), 
 ]

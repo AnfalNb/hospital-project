@@ -67,3 +67,10 @@ class doctor_reply(models.Model):  # patient messages
     class Meta:
         db_table = "doctor_reply"
 
+class doctor_shift_update(models.Model):
+    doctor = models.ForeignKey(doctor_a, on_delete=models.CASCADE, related_name="shift_updates")
+    reason = models.TextField()
+    time = models.DateTimeField(auto_now=False, auto_now_add=False)
+
+    class Meta:
+        db_table = "doctor_shift_update"

@@ -25,7 +25,7 @@ hr {
 }
 
 /* Set a style for all buttons */
-button {
+button, .btn {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
@@ -34,9 +34,11 @@ button {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  display: block;
+  text-align: center;
 }
 
-button:hover {
+button:hover, .btn:hover {
   opacity:1;
 }
 
@@ -88,16 +90,17 @@ button:hover {
       <button type="button" class="">Work schedule</button> </a>
     </div>
         <h1></h1>
-
-    <div class="clearfix">
-      <button type="button" class="">Shift Updates</button> </a>
-    </div>
+        <div class="clearfix">
+          <a href="{% url 'admin_shift_updates' %}" class="btn">Shift Updates</a>
+        </div>
         <h1></h1>
 
     <div class="clearfix">
     
-      <button type="submit" class="">Log out</button> </a>
-      <a href='AdminLogin.html'></a>
+      <a href='/'>
+        <button type="button" class="">Log out</button>
+        
+      </a>
     </div> 
   </form>
 

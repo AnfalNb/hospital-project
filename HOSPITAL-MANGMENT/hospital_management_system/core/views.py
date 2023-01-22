@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import patient_a,doctor_a,hospital_admin, doctor_reply
+from .models import patient_a,doctor_a,hospital_admin, doctor_reply, doctor_shift_update
 from .models import messages as message_model
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -8,13 +8,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from .forms import patientform,doctorform,Message_form
+from .forms import patientform,doctorform,Message_form, doctor_shift_update_form
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.views.generic import ListView
 from django.template import loader
 import logging
 from django.contrib import messages #import messages
+import datetime
 # import django.contrib.auth as auth
 # Create your views here.
 
@@ -204,12 +205,44 @@ def logout_admin(request):
     return redirect(render, 'logout_admin')
 
 
-#-----send updates to admin- not finished yet--
-def sendupdatestoadmin(request):
-    return redirect(render,'sendupdatestoadmin.html')
+def shift_updates(request):
+    if request.method == "POST":
+        user_id = request.session["user_id"]
+        type = request.session["user_type"]
+        user = None
+        if type == "doctor":
+            user = doctor_a.objects.get(id=user_id)
+        print(request.POST)
+        form = doctor_shift_update_form(request.POST)
+        if form.is_valid():
+            shift_update = form.save(commit=False)
+            shift_update.doctor = user
+            date = request.POST["date"].split("-")
+            time = request.POST["time"].split(":")
+            shift_time = datetime.datetime(
+                year=int(date[0]),
+                month=int(date[1]),
+                day=int(date[2]),
+                hour=int(time[0]),
+                minute=int(time[1]),
+            )
+            shift_update.time = shift_time
+            shift_update.save()
+            return redirect("doctor_profile")
+    form = doctor_shift_update_form()
+    context = {
+      "form": form
+    }
+    return render(request, "send_update.html", context)
 
-def AnswerUrPatient(request):
-    return redirect(render, 'AnswerUrPatient')
+    
+def admin_shift_updates(request):
+    shift_updates = doctor_shift_update.objects.all()[:20]
+    context = {
+      "shift_updates": shift_updates
+    }
+    return render(request, "view_send_update.html", context)
+
 
 
 class patientList(ListView):
